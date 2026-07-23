@@ -3,108 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KanjiTap</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyMyYzNlNmInLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMxZjJkNGQnLz48L2xpbmVhckdyYWRpZW50PjxmaWx0ZXIgaWQ9J3MnPjxmZURyb3BTaGFkb3cgZHg9JzAnIGR5PSc0JyBzdGREZXZpYXRpb249JzQnIGZsb29kLW9wYWNpdHk9JzAuMycvPjwvZmlsdGVyPjwvZGVmcz48cmVjdCB4PScxOCcgeT0nMTgnIHdpZHRoPSc2NCcgaGVpZ2h0PSc2NCcgcng9JzgnIHRyYW5zZm9ybT0ncm90YXRlKDQ1IDUwIDUwKScgZmlsbD0ndXJsKCNnKScgZmlsdGVyPSd1cmwoI3MpJyBzdHJva2U9JyNmN2Y1ZWYnIHN0cm9rZS13aWR0aD0nMScvPjxwYXRoIGQ9J00zMiA0MGgzNk0zNiA0OGgyOE00MSA0OHYyMk01OSA0OHYyMicgc3Ryb2tlPScjZjdmNWVmJyBzdHJva2Utd2lkdGg9JzUnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjxjaXJjbGUgY3g9JzUwJyBjeT0nNTgnIHI9JzUnIGZpbGw9JyNmN2Y1ZWYnLz48L3N2Zz4=">
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyMyYzNlNmInLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMxZjJkNGQnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgZmlsbD0nIzFmMmQ0ZCcvPjxyZWN0IHg9JzE4JyB5PScxOCcgd2lkdGg9JzY0JyBoZWlnaHQ9JzY0JyByeD0nOCcgdHJhbnNmb3JtPSdyb3RhdGUoNDUgNTAgNTApJyBmaWxsPSd1cmwoI2cpJyBzdHJva2U9JyNmN2Y1ZWYnIHN0cm9rZS13aWR0aD0nMScvPjxwYXRoIGQ9J00zMiA0MGgzNk0zNiA0OGgyOE00MSA0OHYyMk01OSA0OHYyMicgc3Ryb2tlPScjZjdmNWVmJyBzdHJva2Utd2lkdGg9JzUnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjxjaXJjbGUgY3g9JzUwJyBjeT0nNTgnIHI9JzUnIGZpbGw9JyNmN2Y1ZWYnLz48L3N2Zz4=">
+    <title>✨ KanjiTap</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23FDFBF7'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23FDFBF7'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --font-sans: 'Inter', sans-serif;
-            --font-jp: 'Noto Sans JP', sans-serif;
-        }
-
-        [data-motif="aizome"] {
-            --aizome-chrome: #1f2d4d;
-            --aizome-chrome-light: #2c3e6b;
-            --aizome-chrome-hover: #17223b;
-            --aizome-card: #f7f5ef;
-            --aizome-card-hover: #ebe8de;
-            --aizome-text: #1a2238;
-            --aizome-border: #2c3e6b;
-            --aizome-subtext: #4a5d8a;
-            /* Elegant Seigaiha (Wave) Pattern */
-            --aizome-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%234a5d8a' stroke-width='1' opacity='0.2'%3E%3Cpath d='M30 60c-16.569 0-30-13.431-30-30h6c0 13.255 10.745 24 24 24s24-10.745 24-24h6c0 16.569-13.431 30-30 30zm0-12c-9.941 0-18-8.059-18-18h6c0 6.627 5.373 12 12 12s12-5.373 12-12h6c0 9.941-8.059 18-18 18zm0-12c-3.314 0-6-2.686-6-6h6c0 .166.012.33.035.492l5.852-1.393A5.992 5.992 0 0 0 36 24h6c0 3.314-2.686 6-6 6zM-30 30C-13.431 30 0 16.569 0 0h-6c0 13.255-10.745 24-24 24s-24-10.745-24-24h-6c0 16.569 13.431 30 30 30zm0-12c9.941 0 18-8.059 18-18h-6c0 6.627-5.373 12-12 12s-12-5.373-12-12h-6c0 9.941 8.059 18 18 18zm0-12c3.314 0 6-2.686 6-6h-6c0 .166-.012.33-.035.492l-5.852-1.393A5.992 5.992 0 0 1-36-6h-6c0 3.314 2.686 6 6 6zM90 30c-16.569 0-30-13.431-30-30h6c0 13.255 10.745 24 24 24s24-10.745 24-24h6c0 16.569-13.431 30-30 30zm0-12c-9.941 0-18-8.059-18-18h6c0 6.627 5.373 12 12 12s12-5.373 12-12h6c0 9.941-8.059 18-18 18zm0-12c-3.314 0-6-2.686-6-6h6c0 .166.012.33.035.492l5.852-1.393A5.992 5.992 0 0 0 96-6h6c0 3.314-2.686 6-6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            --font-sans: 'Quicksand', sans-serif;
+            --font-jp: 'Klee One', cursive;
         }
 
         body { 
             font-family: var(--font-sans); 
-            background-color: var(--aizome-chrome);
-            background-image: var(--aizome-pattern), radial-gradient(circle at 50% -20%, var(--aizome-chrome-light) 0%, var(--aizome-chrome) 100%);
-            color: var(--aizome-card);
-            background-attachment: fixed;
+            background-color: #FDFBF7;
+            color: #1e1b4b;
         }
         
-        .jp-text { font-family: var(--font-jp); }
+        .jp-text, #japanese-word { font-family: var(--font-jp); }
 
         .aizome-card-surface {
-            background-color: var(--aizome-card);
-            background-image: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 30%);
-            color: var(--aizome-text);
-            border: 1px solid rgba(255,255,255,0.6);
-            box-shadow: 0 25px 50px -12px rgba(26, 34, 56, 0.6), 0 10px 15px -3px rgba(26, 34, 56, 0.4);
-            border-radius: 8px;
+            background-color: #ffffff;
+            color: #1e1b4b;
+            border: none;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -15px rgba(107,114,128,0.12);
         }
 
         .aizome-hover-reveal {
             position: relative;
             overflow: hidden;
-            background-color: var(--aizome-chrome-light);
-            color: var(--aizome-card);
-            border: 1px solid var(--aizome-border);
-            border-radius: 6px;
-            transition: all 0.2s ease;
+            background-color: #f3e8ff;
+            color: #7e22ce;
+            border: none;
+            border-radius: 9999px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
             z-index: 1;
         }
-        .aizome-hover-reveal::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: var(--aizome-pattern);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-            pointer-events: none;
-        }
         .aizome-hover-reveal:hover {
-            background-color: var(--aizome-chrome-hover);
-            border-color: var(--aizome-card);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-            transform: translateY(-1px);
+            background-color: #e9d5ff;
+            transform: translateY(-4px);
         }
-        .aizome-hover-reveal:hover::before { opacity: 0.8; }
         
         .aizome-btn-secondary {
             background-color: transparent;
-            color: var(--aizome-text);
-            border: 1px solid var(--aizome-border);
-            border-radius: 6px;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+            border-radius: 9999px;
             transition: all 0.2s ease;
         }
         .aizome-btn-secondary:hover {
-            background-color: var(--aizome-card-hover);
-            border-color: var(--aizome-text);
+            background-color: #faf5ff;
+            border-color: #ddd6fe;
+            color: #7e22ce;
         }
         
         .aizome-input {
-            background-color: rgba(255,255,255,0.6);
-            border: 2px solid transparent;
-            border-bottom: 2px solid var(--aizome-border);
-            color: var(--aizome-text);
-            border-radius: 4px 4px 0 0;
+            background-color: #f8fafc;
+            border: none;
+            color: #1e1b4b;
+            border-radius: 9999px;
+            box-shadow: inset 0 2px 5px rgba(100,116,139,0.12);
             transition: all 0.2s ease;
         }
         .aizome-input:focus {
             outline: none;
             background-color: #ffffff;
-            border-color: var(--aizome-chrome-light);
+            box-shadow: inset 0 2px 5px rgba(100,116,139,0.08), 0 0 0 4px #f3e8ff;
         }
 
         .aizome-checkbox input:checked + div {
-            background-color: var(--aizome-chrome-light);
-            border-color: var(--aizome-chrome-light);
+            background-color: #c4b5fd;
+            border-color: #c4b5fd;
         }
         .aizome-checkbox input:checked + div svg {
             opacity: 1;
@@ -112,9 +84,9 @@
         }
         
         .aizome-scrollbar::-webkit-scrollbar { width: 8px; }
-        .aizome-scrollbar::-webkit-scrollbar-track { background: rgba(26, 34, 56, 0.05); border-radius: 4px; }
-        .aizome-scrollbar::-webkit-scrollbar-thumb { background: var(--aizome-border); border-radius: 4px; }
-        .aizome-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--aizome-chrome-light); }
+        .aizome-scrollbar::-webkit-scrollbar-track { background: #f8fafc; border-radius: 4px; }
+        .aizome-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+        .aizome-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
 
         @keyframes dyeBloomAnim {
             0% { transform: scale(0); opacity: 0.8; }
@@ -122,13 +94,12 @@
         }
         .dye-bloom {
             position: absolute;
-            background-color: var(--aizome-chrome-light);
+            background-color: #dcfce7;
             border-radius: 50%;
             width: 30px;
             height: 30px;
             animation: dyeBloomAnim 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
             pointer-events: none;
-            mix-blend-mode: multiply;
             z-index: 0;
         }
         
@@ -138,8 +109,8 @@
             40%, 80% { transform: translateX(8px); }
         }
         @keyframes aizomeErrorColor {
-            0%, 100% { background-color: var(--aizome-card); color: var(--aizome-text); }
-            50% { background-color: var(--aizome-chrome-light); color: var(--aizome-card); }
+            0%, 100% { background-color: #ffffff; color: #1e1b4b; }
+            50% { background-color: #fef3c7; color: #92400e; }
         }
         .aizome-error-flash {
             animation: aizomeShake 0.4s cubic-bezier(.36,.07,.19,.97) both, aizomeErrorColor 0.4s ease-in-out both;
@@ -147,52 +118,43 @@
 
         .sprint-opt {
             background-color: transparent;
-            color: var(--aizome-subtext);
-            border: 1px solid var(--aizome-border);
+            color: #64748b;
+            border: 2px solid #e2e8f0;
             transition: all 0.2s ease;
         }
         .sprint-opt.active {
-            background-color: var(--aizome-chrome-light);
-            color: var(--aizome-card);
-            border-color: var(--aizome-chrome-light);
+            background-color: #f3e8ff;
+            color: #7e22ce;
+            border-color: #f3e8ff;
         }
 
         .format-btn:not(.active-format):hover { background-color: transparent !important; }
-        .format-btn.active-format:hover { background-color: #1a2238 !important; }
+        .format-btn.active-format:hover { background-color: #e9d5ff !important; }
 
         *:focus, *:focus-visible { outline: none !important; }
-        ::selection { background-color: var(--aizome-chrome-light) !important; color: var(--aizome-card) !important; }
+        ::selection { background-color: #e9d5ff !important; color: #1e1b4b !important; }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-6 selection:bg-[#2c3e6b] selection:text-[#f3f1ea]">
+<body class="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-6 selection:bg-purple-200 selection:text-indigo-950">
 
     <div id="app-container" class="w-full max-w-md relative transition-all duration-500 ease-in-out">
         
         <div id="home-screen" class="aizome-card-surface p-5 sm:p-8 w-full">
             
-            <div class="text-center mb-6 sm:mb-10 border-b border-[#2c3e6b]/10 pb-6 sm:pb-8 relative">
-                <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-[1.25rem] border border-[#2c3e6b]/20 text-[#1a2238] mb-4 sm:mb-5 bg-gradient-to-br from-white to-[#f7f5ef] shadow-lg relative z-10 transform rotate-45 group transition-all duration-300 hover:shadow-xl">
-                    <div class="absolute inset-0 bg-[var(--aizome-pattern)] opacity-[0.03] pointer-events-none rounded-[1.25rem]"></div>
-                    <svg class="w-8 h-8 sm:w-9 sm:h-9 transform -rotate-45 transition-transform duration-500 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 7h18"/>
-                        <path d="M5 11h14"/>
-                        <path d="M7 7v14"/>
-                        <path d="M17 7v14"/>
-                        <circle cx="12" cy="16" r="2.5" fill="currentColor" stroke="none"/>
-                    </svg>
+            <div class="text-center mb-6 sm:mb-10 border-b border-slate-100 pb-6 sm:pb-8 relative">
+                <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full text-3xl sm:text-4xl mb-4 sm:mb-5 bg-purple-50 shadow-[0_10px_25px_-8px_rgba(168,85,247,0.35)] relative z-10 transition-transform duration-300 hover:-translate-y-1">
+                    🌸
                 </div>
-                <h1 class="text-3xl sm:text-4xl mb-1 sm:mb-2 relative z-10 flex items-center justify-center">
-                    <span class="font-black text-[#1a2238] tracking-[-0.02em]">KANJI</span>
-                    <span class="mx-2 sm:mx-3 text-[#2c3e6b]/20 font-light text-2xl sm:text-3xl">|</span>
-                    <span class="font-medium text-[#4a5d8a] tracking-[0.25em]">TAP</span>
+                <h1 class="text-3xl sm:text-4xl mb-1 sm:mb-2 relative z-10 font-black text-indigo-950 tracking-tight">
+                    ✨ KanjiTap
                 </h1>
-                <p class="text-[#4a5d8a] text-xs sm:text-sm font-semibold tracking-wide relative z-10">Master Japanese Vocabulary</p>
+                <p class="text-slate-500 text-xs sm:text-sm font-semibold tracking-wide relative z-10">Master Japanese Vocabulary</p>
             </div>
 
             <!-- Mode Selection -->
             <div class="mb-6 sm:mb-8">
                 <div class="flex justify-between items-end mb-2 sm:mb-3">
-                    <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#4a5d8a] font-bold">Drill Mode</h3>
+                    <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold">Drill Mode</h3>
                 </div>
                 <div class="grid grid-cols-2 gap-2 sm:gap-3">
                     <div class="flex flex-col gap-2">
@@ -200,9 +162,9 @@
                             <i data-lucide="timer" class="w-4 h-4 mx-auto mb-1 opacity-80"></i> Sprint
                         </button>
                         <div id="sprint-time-options" class="flex gap-1 h-8">
-                            <button onclick="setSprintTime(30, this)" class="sprint-opt active flex-1 text-[10px] font-bold rounded-sm tracking-wider">30s</button>
-                            <button onclick="setSprintTime(60, this)" class="sprint-opt flex-1 text-[10px] font-bold rounded-sm tracking-wider">60s</button>
-                            <button onclick="setSprintTime(120, this)" class="sprint-opt flex-1 text-[10px] font-bold rounded-sm tracking-wider">2m</button>
+                            <button onclick="setSprintTime(30, this)" class="sprint-opt active flex-1 text-[10px] font-bold rounded-full tracking-wider">30s</button>
+                            <button onclick="setSprintTime(60, this)" class="sprint-opt flex-1 text-[10px] font-bold rounded-full tracking-wider">60s</button>
+                            <button onclick="setSprintTime(120, this)" class="sprint-opt flex-1 text-[10px] font-bold rounded-full tracking-wider">2m</button>
                         </div>
                     </div>
                     
@@ -210,14 +172,14 @@
                         <button onclick="selectMode('zen', this)" class="mode-btn aizome-btn-secondary w-full py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm h-[64px] sm:h-[72px]">
                             <i data-lucide="infinity" class="w-4 h-4 mx-auto mb-1 opacity-80"></i> Zen (Practice)
                         </button>
-                        <div id="zen-placeholder" class="h-8 flex items-center justify-center text-[9px] text-[#4a5d8a]/50 font-mono uppercase tracking-widest hidden">Endless</div>
+                        <div id="zen-placeholder" class="h-8 flex items-center justify-center text-[9px] text-slate-400 font-mono uppercase tracking-widest hidden">Endless</div>
                     </div>
                 </div>
             </div>
 
             <!-- Category Selection -->
             <div class="mb-5 sm:mb-6">
-                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#4a5d8a] font-bold mb-2 sm:mb-3">Vocabulary List</h3>
+                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-2 sm:mb-3">Vocabulary List</h3>
                 <div class="flex flex-wrap gap-2">
                     <button data-cat="all" onclick="selectCategory('all', this)" class="cat-btn aizome-hover-reveal flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs active-cat">All Words</button>
                     <button data-cat="noun" onclick="selectCategory('noun', this)" class="cat-btn aizome-btn-secondary flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Nouns</button>
@@ -231,17 +193,17 @@
 
             <!-- Answer Format Selection -->
             <div class="mb-5 sm:mb-6">
-                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#4a5d8a] font-bold mb-2 sm:mb-3">Required Answer Format</h3>
-                <div class="flex flex-col sm:flex-row bg-[#1a2238]/5 rounded border border-[#2c3e6b]/10 p-1 gap-1">
-                    <button onclick="setAnswerFormat('both', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded bg-[#1a2238] text-[#f7f5ef] shadow-sm transition-all active-format">Any (Both)</button>
-                    <button onclick="setAnswerFormat('meaning', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded text-[#4a5d8a] hover:bg-[#1a2238]/10 transition-all">English Only</button>
-                    <button onclick="setAnswerFormat('romaji', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded text-[#4a5d8a] hover:bg-[#1a2238]/10 transition-all">Romaji Only</button>
+                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-2 sm:mb-3">Required Answer Format</h3>
+                <div class="flex flex-col sm:flex-row bg-slate-50 rounded-2xl border-2 border-slate-200 p-1 gap-1">
+                    <button onclick="setAnswerFormat('both', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded-xl bg-purple-100 text-purple-700 shadow-sm transition-all active-format">Any (Both)</button>
+                    <button onclick="setAnswerFormat('meaning', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded-xl text-slate-500 hover:bg-purple-50 transition-all">English Only</button>
+                    <button onclick="setAnswerFormat('romaji', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded-xl text-slate-500 hover:bg-purple-50 transition-all">Romaji Only</button>
                 </div>
             </div>
 
             <!-- Dynamic Collections Section -->
             <div id="collections-section" class="mb-8 sm:mb-10 hidden">
-                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#4a5d8a] font-bold mb-2 sm:mb-3 border-t border-[#2c3e6b]/10 pt-4">Your Collections</h3>
+                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-2 sm:mb-3 border-t border-slate-100 pt-4">Your Collections</h3>
                 <div id="collections-list" class="flex flex-wrap gap-2">
                     <!-- Populated dynamically by JS -->
                 </div>
@@ -251,8 +213,8 @@
                 Begin Session <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"></i>
             </button>
 
-            <div class="mt-5 sm:mt-6 pt-4 sm:pt-5 text-center border-t border-[#2c3e6b]/10">
-                <button onclick="openManageVocab()" class="text-[11px] sm:text-xs font-semibold text-[#4a5d8a] hover:text-[#1a2238] transition-colors flex items-center justify-center gap-2 w-full py-2">
+            <div class="mt-5 sm:mt-6 pt-4 sm:pt-5 text-center border-t border-slate-100">
+                <button onclick="openManageVocab()" class="text-[11px] sm:text-xs font-semibold text-slate-400 hover:text-purple-700 transition-colors flex items-center justify-center gap-2 w-full py-2">
                     <i data-lucide="database" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Manage Database
                 </button>
             </div>
@@ -260,54 +222,54 @@
 
         <div id="game-screen" class="hidden w-full relative">
             <div class="absolute -top-10 left-0 w-full text-center">
-                <div id="status-hud" class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-[#f3f1ea] text-[#1a2238] border border-[#2c3e6b]/50 text-[9px] sm:text-[10px] font-mono uppercase tracking-widest shadow-sm rounded-full opacity-90 backdrop-blur-sm whitespace-nowrap scale-95 sm:scale-100">
+                <div id="status-hud" class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-white text-indigo-950 border border-slate-200 text-[9px] sm:text-[10px] font-mono uppercase tracking-widest shadow-sm rounded-full opacity-90 whitespace-nowrap scale-95 sm:scale-100">
                     <span id="hud-mode">Mode: Sprint</span>
-                    <span class="w-1 h-1 rounded-full bg-[#4a5d8a]"></span>
+                    <span class="w-1 h-1 rounded-full bg-purple-300"></span>
                     <span id="hud-list">List: All</span>
                 </div>
             </div>
 
             <div class="flex justify-between items-center mb-3 sm:mb-5 aizome-card-surface p-2.5 sm:p-3 px-4 sm:px-5">
                 <div class="flex-1 flex justify-start">
-                    <div id="timer-display" class="text-lg sm:text-xl font-black text-[#1a2238] flex items-center gap-1.5 sm:gap-2">
-                        <i data-lucide="clock" class="w-4 h-4 sm:w-5 sm:h-5 text-[#4a5d8a]"></i>
+                    <div id="timer-display" class="text-lg sm:text-xl font-black text-indigo-950 flex items-center gap-1.5 sm:gap-2">
+                        <i data-lucide="clock" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-400"></i>
                         <span id="time-left-val" class="tracking-tighter">30s</span>
                     </div>
                 </div>
                 <div class="flex-1 flex justify-center">
-                    <button id="quit-btn" onclick="goHome()" class="text-[10px] sm:text-xs font-bold text-[#f7f5ef] bg-[#1a2238] hover:bg-[#2c3e6b] py-1 sm:py-1.5 px-3 sm:px-4 rounded-full transition-colors shadow-sm whitespace-nowrap">
+                    <button id="quit-btn" onclick="goHome()" class="text-[10px] sm:text-xs font-bold text-purple-700 bg-purple-100 hover:bg-purple-200 py-1 sm:py-1.5 px-3 sm:px-4 rounded-full transition-colors whitespace-nowrap">
                         Quit Drill
                     </button>
                 </div>
                 <div class="flex-1 flex justify-end">
-                    <div class="text-lg sm:text-xl font-black text-[#1a2238] flex items-center gap-1.5 sm:gap-2">
+                    <div class="text-lg sm:text-xl font-black text-indigo-950 flex items-center gap-1.5 sm:gap-2">
                         <span id="score-display" class="tracking-tighter">0</span>
-                        <i data-lucide="check-circle-2" class="w-4 h-4 sm:w-5 sm:h-5 text-[#4a5d8a]"></i>
+                        <i data-lucide="check-circle-2" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-400"></i>
                     </div>
                 </div>
             </div>
 
             <div id="flashcard" class="w-full aizome-card-surface p-6 sm:p-10 flex flex-col items-center justify-center min-h-[220px] aspect-auto sm:aspect-[4/3] sm:min-h-0 mb-4 sm:mb-5 relative overflow-hidden group">
                 <div class="card-content-layer w-full h-full flex flex-col items-center justify-center transition-transform duration-200 z-10" id="card-inner">
-                    <h2 id="japanese-word" class="jp-text text-5xl sm:text-7xl leading-none font-black text-[#1a2238] mb-6 sm:mb-8 text-center drop-shadow-sm break-words px-2">---</h2>
+                    <h2 id="japanese-word" class="jp-text text-5xl sm:text-7xl leading-none font-black text-indigo-950 mb-6 sm:mb-8 text-center break-words px-2">---</h2>
                     
                     <div id="correct-answer-reveal" class="absolute bottom-4 sm:bottom-6 flex flex-col items-center justify-center opacity-0 transition-opacity duration-200">
-                        <div class="text-xs sm:text-sm font-bold text-[#f7f5ef] bg-[#1a2238] px-4 sm:px-6 py-1.5 sm:py-2 rounded shadow-md tracking-wide mb-1" id="reveal-meaning">---</div>
-                        <div class="text-[9px] sm:text-[10px] text-[#4a5d8a] font-mono uppercase tracking-widest font-bold" id="reveal-romaji">---</div>
+                        <div class="text-xs sm:text-sm font-bold text-purple-700 bg-purple-100 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full shadow-sm tracking-wide mb-1" id="reveal-meaning">---</div>
+                        <div class="text-[9px] sm:text-[10px] text-slate-500 font-mono uppercase tracking-widest font-bold" id="reveal-romaji">---</div>
                     </div>
                 </div>
             </div>
 
             <div class="flex flex-col gap-2.5 sm:gap-3">
                 <div class="relative aizome-card-surface p-1.5 sm:p-2 shadow-sm">
-                    <input type="text" id="answer-input" autocomplete="off" placeholder="Type meaning or romaji..." class="aizome-input w-full px-3 sm:px-4 py-3.5 sm:py-5 text-lg sm:text-xl font-bold text-center">
+                    <input type="text" id="answer-input" autocomplete="off" placeholder="Type meaning or romaji..." class="aizome-input w-full px-3 sm:px-4 py-3.5 sm:py-5 text-lg sm:text-xl font-bold text-center focus:ring-4 focus:ring-purple-100 focus:outline-none">
                 </div>
                 <div class="flex gap-2">
                     <button id="skip-btn" onclick="handleSkip()" class="flex-[1] aizome-btn-secondary py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm flex flex-col items-center justify-center bg-white/50">
-                        Skip <span class="text-[8px] sm:text-[9px] text-[#4a5d8a] mt-0.5 sm:mt-1 uppercase tracking-widest font-mono">Press ?</span>
+                        Skip <span class="text-[8px] sm:text-[9px] text-slate-400 mt-0.5 sm:mt-1 uppercase tracking-widest font-mono">Press ?</span>
                     </button>
                     <button id="submit-btn" onclick="checkAnswer()" class="flex-[2] aizome-hover-reveal py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm flex flex-col items-center justify-center shadow-md">
-                        Submit <span class="text-[8px] sm:text-[9px] text-[#f3f1ea]/70 mt-0.5 sm:mt-1 uppercase tracking-widest font-mono">Press Enter</span>
+                        Submit <span class="text-[8px] sm:text-[9px] text-purple-700/70 mt-0.5 sm:mt-1 uppercase tracking-widest font-mono">Press Enter</span>
                     </button>
                 </div>
             </div>
@@ -315,29 +277,29 @@
 
         <!-- GAME OVER SCREEN -->
         <div id="game-over-screen" class="hidden w-full aizome-card-surface p-5 sm:p-8 relative overflow-hidden">
-            <div class="text-center mb-6 sm:mb-8 border-b border-[#2c3e6b]/20 pb-6 sm:pb-8 relative z-10">
-                <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-[#2c3e6b] text-[#1f2d4d] mb-3 sm:mb-4 bg-white shadow-sm">
-                    <i data-lucide="flag" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+            <div class="text-center mb-6 sm:mb-8 border-b border-slate-100 pb-6 sm:pb-8 relative z-10">
+                <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full text-2xl sm:text-3xl mb-3 sm:mb-4 bg-purple-50">
+                    🎉
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-black text-[#1a2238] mb-1">Session Complete</h2>
-                <p class="text-[#4a5d8a] text-xs sm:text-sm font-medium">Drill performance analytics.</p>
+                <h2 class="text-2xl sm:text-3xl font-black text-indigo-950 mb-1">Session Complete</h2>
+                <p class="text-slate-500 text-xs sm:text-sm font-medium">Drill performance analytics.</p>
             </div>
             
             <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8 relative z-10">
-                <div class="p-4 sm:p-5 border border-[#2c3e6b]/10 rounded-lg text-center flex flex-col items-center justify-center bg-white/60 shadow-inner">
-                    <div class="text-[9px] sm:text-[10px] text-[#4a5d8a] uppercase tracking-widest font-bold mb-1">Total Score</div>
-                    <div class="text-4xl sm:text-5xl font-black text-[#1a2238]" id="final-score">0</div>
+                <div class="p-4 sm:p-5 border border-slate-100 rounded-2xl text-center flex flex-col items-center justify-center bg-slate-50/60">
+                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">Total Score</div>
+                    <div class="text-4xl sm:text-5xl font-black text-indigo-950" id="final-score">0</div>
                 </div>
-                <div class="p-4 sm:p-5 border border-[#2c3e6b]/10 rounded-lg text-center flex flex-col items-center justify-center bg-white/60 shadow-inner">
-                    <div class="text-[9px] sm:text-[10px] text-[#4a5d8a] uppercase tracking-widest font-bold mb-1">Accuracy</div>
-                    <div class="text-2xl sm:text-3xl font-black text-[#1a2238] mt-1 sm:mt-2" id="accuracy-display">0%</div>
+                <div class="p-4 sm:p-5 border border-slate-100 rounded-2xl text-center flex flex-col items-center justify-center bg-slate-50/60">
+                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">Accuracy</div>
+                    <div class="text-2xl sm:text-3xl font-black text-indigo-950 mt-1 sm:mt-2" id="accuracy-display">0%</div>
                 </div>
             </div>
 
             <div id="review-section" class="hidden mb-6 sm:mb-8 relative z-10">
                 <div class="flex items-center gap-2 mb-2 sm:mb-3">
-                    <i data-lucide="book-open-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1a2238]"></i>
-                    <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-[#1a2238] font-bold">Needs Review</h3>
+                    <i data-lucide="book-open-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i>
+                    <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-indigo-950 font-bold">Needs Review</h3>
                 </div>
                 <div id="review-list" class="max-h-48 sm:max-h-56 overflow-y-auto space-y-2 pr-2 aizome-scrollbar">
                     <!-- Populated by JS -->
@@ -353,45 +315,44 @@
         </div>
 
         <!-- CUSTOM AD-HOC SELECTION SCREEN -->
-        <div id="custom-selection-screen" class="hidden w-full aizome-card-surface flex flex-col h-[90vh] sm:h-[85vh] sm:max-h-[800px] shadow-2xl rounded-lg">
-            <div class="p-4 sm:p-6 border-b border-[#2c3e6b]/10 shrink-0 text-center relative bg-white/40 rounded-t-lg">
-                <h2 class="text-xl sm:text-2xl font-black text-[#1a2238] mb-1">Build Custom Drill</h2>
-                <p class="text-[#4a5d8a] text-[10px] sm:text-xs font-medium">Select specific vocabulary to include for this session.</p>
+        <div id="custom-selection-screen" class="hidden w-full aizome-card-surface flex flex-col h-[90vh] sm:h-[85vh] sm:max-h-[800px] overflow-hidden">
+            <div class="p-4 sm:p-6 border-b border-slate-100 shrink-0 text-center relative bg-white">
+                <h2 class="text-xl sm:text-2xl font-black text-indigo-950 mb-1">Build Custom Drill</h2>
+                <p class="text-slate-500 text-[10px] sm:text-xs font-medium">Select specific vocabulary to include for this session.</p>
             </div>
             
-            <div class="flex justify-between items-center px-4 sm:px-6 py-2 sm:py-3 shrink-0 bg-[#f7f5ef] border-b border-[#2c3e6b]/20">
-                <span class="text-[#1a2238] text-[10px] sm:text-xs font-bold uppercase tracking-wider">Word Bank</span>
+            <div class="flex justify-between items-center px-4 sm:px-6 py-2 sm:py-3 shrink-0 bg-slate-50 border-b border-slate-100">
+                <span class="text-indigo-950 text-[10px] sm:text-xs font-bold uppercase tracking-wider">Word Bank</span>
                 <div class="flex gap-1.5 sm:gap-2">
-                    <button onclick="toggleAllCustom(true)" class="text-[9px] sm:text-[10px] font-bold text-[#f7f5ef] bg-[#1a2238] hover:bg-[#2c3e6b] px-2 sm:px-3 py-1 sm:py-1.5 rounded transition-colors shadow-sm uppercase tracking-wider">Select All</button>
-                    <button onclick="toggleAllCustom(false)" class="text-[9px] sm:text-[10px] font-bold text-[#1a2238] bg-transparent border border-[#2c3e6b] hover:bg-white px-2 sm:px-3 py-1 sm:py-1.5 rounded transition-colors uppercase tracking-wider">Clear</button>
+                    <button onclick="toggleAllCustom(true)" class="text-[9px] sm:text-[10px] font-bold text-purple-700 bg-purple-100 hover:bg-purple-200 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-colors uppercase tracking-wider">Select All</button>
+                    <button onclick="toggleAllCustom(false)" class="text-[9px] sm:text-[10px] font-bold text-slate-500 bg-transparent border-2 border-slate-200 hover:border-purple-200 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-colors uppercase tracking-wider">Clear</button>
                 </div>
             </div>
 
-            <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2 sm:space-y-3 aizome-scrollbar bg-white/30" id="custom-selection-list">
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2 sm:space-y-3 aizome-scrollbar bg-white" id="custom-selection-list">
                 <!-- Checkboxes populated by JS -->
             </div>
             
-            <div class="flex gap-2 sm:gap-3 shrink-0 p-4 sm:p-5 border-t border-[#2c3e6b]/10 bg-white/40 rounded-b-lg">
-                <button onclick="goHome()" class="flex-[1] py-2.5 sm:py-3 aizome-btn-secondary font-bold text-xs sm:text-sm bg-white/50">Cancel</button>
+            <div class="flex gap-2 sm:gap-3 shrink-0 p-4 sm:p-5 border-t border-slate-100 bg-white">
+                <button onclick="goHome()" class="flex-[1] py-2.5 sm:py-3 aizome-btn-secondary font-bold text-xs sm:text-sm">Cancel</button>
                 <button onclick="startSelectedCustomDrill()" class="flex-[2] py-2.5 sm:py-3 aizome-hover-reveal font-bold text-xs sm:text-sm shadow-md">Start Drill</button>
             </div>
         </div>
     </div>
 
-    <div id="manage-vocab-screen" class="hidden fixed inset-0 z-50 bg-[#1f2d4d] flex flex-col">
-        <div class="absolute inset-0 pointer-events-none" style="background-image: var(--aizome-pattern); opacity: 0.8;"></div>
+    <div id="manage-vocab-screen" class="hidden fixed inset-0 z-50 bg-[#FDFBF7] flex flex-col">
         
-        <div class="px-4 sm:px-6 py-3 sm:py-4 bg-[#17223b]/95 backdrop-blur-md border-b border-[#2c3e6b] flex justify-between items-center shrink-0 shadow-lg relative z-20">
+        <div class="px-4 sm:px-6 py-3 sm:py-4 bg-white/90 border-b border-slate-100 flex justify-between items-center shrink-0 relative z-20">
             <div class="flex items-center gap-2 sm:gap-3">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 border border-[#4a5d8a] text-[#f7f5ef] flex items-center justify-center rounded bg-[#1f2d4d]">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 text-purple-700 flex items-center justify-center rounded-full bg-purple-100">
                     <i data-lucide="database" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
-                    <h2 class="text-base sm:text-xl font-black text-[#f7f5ef] tracking-wide leading-tight">Vocabulary Database</h2>
-                    <p class="text-[#4a5d8a] text-[9px] sm:text-xs font-medium hidden sm:block">Manage entries, edit words, and organize collections.</p>
+                    <h2 class="text-base sm:text-xl font-black text-indigo-950 tracking-wide leading-tight">Vocabulary Database</h2>
+                    <p class="text-slate-500 text-[9px] sm:text-xs font-medium hidden sm:block">Manage entries, edit words, and organize collections.</p>
                 </div>
             </div>
-            <button onclick="goHome()" class="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-[#f7f5ef] bg-transparent border border-[#4a5d8a] hover:bg-[#4a5d8a]/20 transition-all rounded">
+            <button onclick="goHome()" class="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-slate-500 bg-transparent border-2 border-slate-200 hover:border-purple-200 hover:text-purple-700 transition-all rounded-full">
                 <i data-lucide="x" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">Close</span>
             </button>
         </div>
@@ -399,61 +360,61 @@
         <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative z-10">
             
             <!-- Mobile Modal Wrapper / Desktop Left Pane Container -->
-            <div id="mobile-form-modal" class="hidden md:flex fixed inset-0 z-[100] bg-[#17223b]/95 backdrop-blur-md p-4 items-center justify-center md:relative md:inset-auto md:z-auto md:bg-transparent md:backdrop-blur-none md:p-0 md:items-stretch">
+            <div id="mobile-form-modal" class="hidden md:flex fixed inset-0 z-[100] bg-white/90 p-4 items-center justify-center md:relative md:inset-auto md:z-auto md:bg-transparent md:p-0 md:items-stretch">
                 <!-- Inner Add / Edit Word Form -->
-                <div class="w-full max-w-md md:max-w-none md:w-80 lg:w-96 bg-[#f7f5ef] md:bg-[#f7f5ef]/95 backdrop-blur-xl flex flex-col shrink-0 border border-[#2c3e6b]/30 md:border-b-0 md:border-t-0 md:border-l-0 md:border-r shadow-2xl md:shadow-[4px_0_24px_rgba(0,0,0,0.15)] rounded-xl md:rounded-none md:rounded-l-lg overflow-hidden h-fit max-h-[90vh] md:max-h-[calc(100vh-80px)] m-auto md:my-6 md:ml-6 md:mr-0 relative">
-                    <div class="p-4 sm:p-6 pb-3 sm:pb-4 border-b border-[#2c3e6b]/10 bg-white/70 flex justify-between items-center relative">
-                        <h3 id="form-title" class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#1a2238] font-black flex items-center gap-1.5 sm:gap-2">
-                            <i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#4a5d8a]"></i> Register Entry
+                <div class="w-full max-w-md md:max-w-none md:w-80 lg:w-96 bg-white flex flex-col shrink-0 border border-slate-100 md:border-b-0 md:border-t-0 md:border-l-0 md:border-r shadow-[0_20px_40px_-15px_rgba(107,114,128,0.15)] rounded-[1.5rem] md:rounded-none md:rounded-l-[1.5rem] overflow-hidden h-fit max-h-[90vh] md:max-h-[calc(100vh-80px)] m-auto md:my-6 md:ml-6 md:mr-0 relative">
+                    <div class="p-4 sm:p-6 pb-3 sm:pb-4 border-b border-slate-100 bg-white flex justify-between items-center relative">
+                        <h3 id="form-title" class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-indigo-950 font-black flex items-center gap-1.5 sm:gap-2">
+                            <i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i> Register Entry
                         </h3>
-                        <button type="button" onclick="closeMobileAddForm()" class="md:hidden text-[#4a5d8a] hover:text-[#1a2238] transition-colors p-1 bg-white/50 rounded-full border border-[#2c3e6b]/20">
+                        <button type="button" onclick="closeMobileAddForm()" class="md:hidden text-slate-400 hover:text-purple-700 transition-colors p-1 bg-slate-50 rounded-full border border-slate-200">
                             <i data-lucide="x" class="w-4 h-4"></i>
                         </button>
                     </div>
                     
                     <div class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-3 sm:space-y-4 aizome-scrollbar">
                         <div>
-                            <label class="block text-[10px] sm:text-[11px] font-bold text-[#4a5d8a] mb-1 sm:mb-1.5 uppercase tracking-wider">Japanese (Kana/Kanji)</label>
-                            <input type="text" id="new-word-jp" placeholder="e.g. ねこ" class="w-full p-2.5 sm:p-3 jp-text font-bold text-base sm:text-lg bg-[#ffffff] text-[#1a2238] placeholder:text-[#4a5d8a]/50 border border-[#2c3e6b]/40 rounded outline-none focus:outline-none focus:border-[#1a2238] focus:ring-2 focus:ring-[#2c3e6b]/30 transition-all shadow-sm">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Japanese (Kana/Kanji)</label>
+                            <input type="text" id="new-word-jp" placeholder="e.g. ねこ" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 jp-text font-bold text-base sm:text-lg bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all shadow-inner">
                         </div>
                         <div>
-                            <label class="block text-[10px] sm:text-[11px] font-bold text-[#4a5d8a] mb-1 sm:mb-1.5 uppercase tracking-wider">Romaji (Reading)</label>
-                            <input type="text" id="new-word-romaji" placeholder="e.g. neko" class="w-full p-2.5 sm:p-3 font-medium bg-[#ffffff] text-[#1a2238] placeholder:text-[#4a5d8a]/50 border border-[#2c3e6b]/40 rounded outline-none focus:outline-none focus:border-[#1a2238] focus:ring-2 focus:ring-[#2c3e6b]/30 transition-all text-xs sm:text-sm shadow-sm">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Romaji (Reading)</label>
+                            <input type="text" id="new-word-romaji" placeholder="e.g. neko" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 font-medium bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all text-xs sm:text-sm shadow-inner">
                         </div>
                         <div>
-                            <label class="block text-[10px] sm:text-[11px] font-bold text-[#4a5d8a] mb-1 sm:mb-1.5 uppercase tracking-wider">English Meaning(s)</label>
-                            <input type="text" id="new-word-en" placeholder="e.g. cat (comma-separated)" class="w-full p-2.5 sm:p-3 font-medium bg-[#ffffff] text-[#1a2238] placeholder:text-[#4a5d8a]/50 border border-[#2c3e6b]/40 rounded outline-none focus:outline-none focus:border-[#1a2238] focus:ring-2 focus:ring-[#2c3e6b]/30 transition-all text-xs sm:text-sm shadow-sm">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">English Meaning(s)</label>
+                            <input type="text" id="new-word-en" placeholder="e.g. cat (comma-separated)" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 font-medium bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all text-xs sm:text-sm shadow-inner">
                         </div>
                         <div class="relative">
-                            <label class="block text-[10px] sm:text-[11px] font-bold text-[#4a5d8a] mb-1 sm:mb-1.5 uppercase tracking-wider">Category / POS</label>
-                            <select id="new-word-type" onchange="handleTypeChange(this)" class="w-full bg-[#1f2d4d] text-[#f7f5ef] border border-[#4a5d8a] outline-none focus:outline-none focus:border-[#f7f5ef]/80 focus:ring-2 focus:ring-[#4a5d8a] p-2.5 sm:p-3 font-medium cursor-pointer rounded text-xs sm:text-sm transition-all appearance-none shadow-sm">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Category / POS</label>
+                            <select id="new-word-type" onchange="handleTypeChange(this)" class="w-full bg-slate-50 text-indigo-950 border-none outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 px-4 sm:px-5 py-2.5 sm:py-3 font-medium cursor-pointer rounded-full text-xs sm:text-sm transition-all appearance-none shadow-inner">
                                 <option value="noun">Noun</option>
                                 <option value="verb">Verb</option>
                                 <option value="adjective">Adjective</option>
                                 <option value="custom_trigger">Custom Tag...</option>
                             </select>
-                            <i data-lucide="chevron-down" class="absolute right-3 top-[30px] sm:top-[34px] w-4 h-4 text-[#4a5d8a] pointer-events-none"></i>
+                            <i data-lucide="chevron-down" class="absolute right-4 top-[32px] sm:top-[36px] w-4 h-4 text-slate-400 pointer-events-none"></i>
                             
-                            <div id="custom-tag-container" class="hidden absolute inset-0 pt-[20px] sm:pt-[22px] items-center bg-[#f7f5ef] z-10 rounded">
-                                <input type="text" id="new-word-custom-type" placeholder="e.g. greeting" class="w-full p-2.5 sm:p-3 text-xs sm:text-sm font-bold bg-[#ffffff] text-[#1a2238] placeholder:text-[#4a5d8a]/50 border border-[#1a2238] rounded outline-none focus:outline-none focus:ring-2 focus:ring-[#2c3e6b]/30 shadow-sm pr-10 transition-all">
-                                <button onclick="cancelCustomTag()" class="absolute right-2 top-[28px] sm:top-[30px] text-[#4a5d8a] hover:text-[#1a2238] p-1 bg-white rounded-full"><i data-lucide="x" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i></button>
+                            <div id="custom-tag-container" class="hidden absolute inset-0 pt-[20px] sm:pt-[22px] items-center bg-white z-10 rounded-full">
+                                <input type="text" id="new-word-custom-type" placeholder="e.g. greeting" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-bold bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 shadow-inner pr-10 transition-all">
+                                <button onclick="cancelCustomTag()" class="absolute right-2 top-[28px] sm:top-[30px] text-slate-400 hover:text-purple-700 p-1 bg-white rounded-full"><i data-lucide="x" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i></button>
                             </div>
                         </div>
                         <div>
-                            <label class="block text-[10px] sm:text-[11px] font-bold text-[#4a5d8a] mb-1 sm:mb-1.5 uppercase tracking-wider">Collection (Optional)</label>
-                            <input type="text" id="new-word-collection" placeholder="e.g. Animals" class="w-full p-2.5 sm:p-3 font-medium bg-[#ffffff] text-[#1a2238] placeholder:text-[#4a5d8a]/50 border border-[#2c3e6b]/40 rounded outline-none focus:outline-none focus:border-[#1a2238] focus:ring-2 focus:ring-[#2c3e6b]/30 transition-all text-xs sm:text-sm shadow-sm">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Collection (Optional)</label>
+                            <input type="text" id="new-word-collection" placeholder="e.g. Animals" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 font-medium bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all text-xs sm:text-sm shadow-inner">
                         </div>
                         
-                        <div id="add-error" class="text-[#f7f5ef] bg-[#1a2238] border-l-4 border-[#4a5d8a] p-2.5 sm:p-3 text-[10px] sm:text-[11px] font-bold hidden rounded shadow-sm">
+                        <div id="add-error" class="text-amber-800 bg-amber-100 border-l-4 border-amber-300 p-2.5 sm:p-3 text-[10px] sm:text-[11px] font-bold hidden rounded-2xl shadow-sm">
                             Required fields: Japanese & English.
                         </div>
                     </div>
                     
-                    <div class="p-4 sm:p-6 border-t border-[#2c3e6b]/10 bg-white/70 shrink-0 flex flex-col gap-2">
-                        <button id="add-word-btn" onclick="addNewWord()" class="w-full py-2.5 sm:py-3.5 bg-[#1a2238] hover:bg-[#2c3e6b] text-[#f7f5ef] font-bold text-sm transition-colors shadow-md rounded flex items-center justify-center gap-2">
+                    <div class="p-4 sm:p-6 border-t border-slate-100 bg-white shrink-0 flex flex-col gap-2">
+                        <button id="add-word-btn" onclick="addNewWord()" class="w-full py-2.5 sm:py-3.5 bg-purple-100 hover:bg-purple-200 text-purple-700 font-bold text-sm transition-all hover:-translate-y-1 rounded-full flex items-center justify-center gap-2">
                             <i data-lucide="plus" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Add to Database
                         </button>
-                        <button id="cancel-edit-btn" onclick="cancelEdit()" class="hidden w-full py-2 sm:py-2.5 bg-transparent border border-[#2c3e6b] text-[#1a2238] hover:bg-white font-bold transition-colors rounded text-xs sm:text-sm">
+                        <button id="cancel-edit-btn" onclick="cancelEdit()" class="hidden w-full py-2 sm:py-2.5 bg-transparent border-2 border-slate-200 text-slate-500 hover:border-purple-200 hover:text-purple-700 font-bold transition-colors rounded-full text-xs sm:text-sm">
                             Cancel Edit
                         </button>
                     </div>
@@ -465,37 +426,37 @@
                 <div class="max-w-6xl mx-auto h-full flex flex-col">
                     
                     <!-- Mobile 'Add Word' Trigger -->
-                    <button onclick="openMobileAddForm()" class="md:hidden w-full mb-4 py-3 sm:py-3.5 bg-gradient-to-r from-[#1a2238] to-[#2c3e6b] hover:from-[#2c3e6b] hover:to-[#4a5d8a] text-[#f7f5ef] font-black text-sm transition-all shadow-[0_4px_12px_rgba(26,34,56,0.3)] rounded-lg flex items-center justify-center gap-2 border border-[#4a5d8a]/30">
+                    <button onclick="openMobileAddForm()" class="md:hidden w-full mb-4 py-3 sm:py-3.5 bg-purple-100 hover:bg-purple-200 text-purple-700 font-black text-sm transition-all hover:-translate-y-1 rounded-full flex items-center justify-center gap-2">
                         <i data-lucide="plus-circle" class="w-4 h-4 sm:w-5 sm:h-5"></i> Add New Word
                     </button>
 
                     <!-- Filtering and Search Bar -->
-                    <div class="bg-[#17223b]/80 backdrop-blur-md p-3 sm:p-4 rounded-lg border border-[#2c3e6b] mb-4 sm:mb-6 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-center justify-between sticky top-0 z-20 shadow-lg">
-                        <div class="flex items-center gap-2 bg-[#1f2d4d] border border-[#4a5d8a] rounded px-3 py-1.5 sm:py-2 w-full md:w-64 focus-within:ring-2 focus-within:ring-[#4a5d8a] focus-within:border-[#f7f5ef]/80 transition-all">
-                            <i data-lucide="search" class="w-4 h-4 text-[#4a5d8a]"></i>
-                            <input type="text" id="db-search" oninput="renderVocabManagerList()" placeholder="Search word, meaning..." class="bg-transparent text-[#f7f5ef] text-xs sm:text-sm outline-none focus:outline-none focus:ring-0 w-full placeholder:text-[#4a5d8a] transition-all">
+                    <div class="bg-white p-3 sm:p-4 rounded-[1.5rem] border border-slate-100 mb-4 sm:mb-6 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-center justify-between sticky top-0 z-20 shadow-[0_10px_30px_-15px_rgba(107,114,128,0.15)]">
+                        <div class="flex items-center gap-2 bg-slate-50 rounded-full px-4 py-1.5 sm:py-2 w-full md:w-64 focus-within:ring-4 focus-within:ring-purple-100 transition-all">
+                            <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+                            <input type="text" id="db-search" oninput="renderVocabManagerList()" placeholder="Search word, meaning..." class="bg-transparent text-indigo-950 text-xs sm:text-sm outline-none focus:outline-none focus:ring-0 w-full placeholder:text-slate-400 transition-all">
                         </div>
                         
                         <div class="flex w-full sm:w-auto flex-wrap gap-2 sm:gap-3 items-center justify-between sm:justify-start">
-                            <select id="db-filter" onchange="renderVocabManagerList()" class="bg-[#1f2d4d] border border-[#4a5d8a] text-[#f7f5ef] outline-none focus:outline-none focus:ring-2 focus:ring-[#4a5d8a] focus:border-[#f7f5ef]/80 p-1.5 sm:p-2 rounded text-[10px] sm:text-sm transition-all w-[calc(50%-0.25rem)] sm:w-auto">
+                            <select id="db-filter" onchange="renderVocabManagerList()" class="bg-slate-50 border-none text-indigo-950 outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 p-1.5 sm:p-2 rounded-full text-[10px] sm:text-sm transition-all w-[calc(50%-0.25rem)] sm:w-auto px-3">
                                 <option value="all">All Categories</option>
                                 <option value="noun">Nouns</option>
                                 <option value="verb">Verbs</option>
                                 <option value="adjective">Adjectives</option>
                                 <option value="custom">Custom Tags</option> 
                             </select>
-                            <select id="db-col-filter" onchange="renderVocabManagerList()" class="bg-[#1f2d4d] border border-[#4a5d8a] text-[#f7f5ef] outline-none focus:outline-none focus:ring-2 focus:ring-[#4a5d8a] focus:border-[#f7f5ef]/80 p-1.5 sm:p-2 rounded text-[10px] sm:text-sm sm:min-w-[140px] transition-all w-[calc(50%-0.25rem)] sm:w-auto">
+                            <select id="db-col-filter" onchange="renderVocabManagerList()" class="bg-slate-50 border-none text-indigo-950 outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 p-1.5 sm:p-2 rounded-full text-[10px] sm:text-sm sm:min-w-[140px] transition-all w-[calc(50%-0.25rem)] sm:w-auto px-3">
                                 <option value="all">All Collections</option>
                             </select>
                             
-                            <button onclick="openManageCollections()" class="bg-[#2c3e6b] hover:bg-[#4a5d8a] text-[#f7f5ef] border border-[#4a5d8a] px-2 sm:px-3 py-1.5 sm:py-2 rounded text-[10px] sm:text-sm font-bold transition-colors shadow-sm flex items-center justify-center gap-1.5 w-full sm:w-auto mt-1 sm:mt-0" title="Manage Collections">
+                            <button onclick="openManageCollections()" class="bg-purple-100 hover:bg-purple-200 text-purple-700 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-sm font-bold transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto mt-1 sm:mt-0" title="Manage Collections">
                                 <i data-lucide="folders" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Manage
                             </button>
                         </div>
                     </div>
 
                     <div class="flex justify-between items-center mb-3 sm:mb-4 px-1 sm:px-2">
-                        <h3 class="text-xs sm:text-sm font-bold text-[#f7f5ef] tracking-wide"><span id="db-count">0</span> Entries Displayed</h3>
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-500 tracking-wide"><span id="db-count">0</span> Entries Displayed</h3>
                     </div>
                     
                     <!-- Grid -->
@@ -506,35 +467,35 @@
             </div>
 
             <!-- Floating Bulk Action Bar -->
-            <div id="bulk-action-bar" class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 bg-[#17223b] border border-[#4a5d8a] shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-lg sm:rounded-full px-3 sm:px-6 py-2 sm:py-3 flex flex-wrap sm:flex-nowrap justify-center items-center gap-2 sm:gap-4 w-[95%] sm:w-auto transition-all duration-300 translate-y-24 opacity-0 z-50 pointer-events-none">
+            <div id="bulk-action-bar" class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 bg-white border border-slate-100 shadow-[0_20px_40px_-15px_rgba(107,114,128,0.25)] rounded-2xl sm:rounded-full px-3 sm:px-6 py-2 sm:py-3 flex flex-wrap sm:flex-nowrap justify-center items-center gap-2 sm:gap-4 w-[95%] sm:w-auto transition-all duration-300 translate-y-24 opacity-0 z-50 pointer-events-none">
                 <div class="flex items-center gap-1.5 sm:gap-2">
-                    <span id="bulk-count" class="text-[10px] sm:text-xs font-black text-[#17223b] bg-[#f7f5ef] px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-sm">0</span>
-                    <span class="text-[10px] sm:text-xs font-bold text-[#f7f5ef] uppercase tracking-wider">Selected</span>
+                    <span id="bulk-count" class="text-[10px] sm:text-xs font-black text-purple-700 bg-purple-100 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">0</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-indigo-950 uppercase tracking-wider">Selected</span>
                 </div>
-                <div class="h-4 sm:h-6 w-px bg-[#4a5d8a] hidden sm:block"></div>
+                <div class="h-4 sm:h-6 w-px bg-slate-200 hidden sm:block"></div>
                 <div class="flex items-center gap-1.5 sm:gap-2">
-                    <input type="text" id="bulk-collection-input" placeholder="Set Collection..." class="bg-[#1f2d4d] text-[#f7f5ef] placeholder:text-[#4a5d8a] text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded border border-[#2c3e6b] outline-none focus:outline-none focus:ring-2 focus:ring-[#4a5d8a] focus:border-[#4a5d8a] transition-all w-24 sm:w-auto">
-                    <button onclick="applyBulkCollection()" class="text-xs sm:text-sm font-bold text-[#f7f5ef] hover:text-[#4a5d8a] transition-colors whitespace-nowrap bg-[#2c3e6b] px-2 sm:px-3 py-1 sm:py-1.5 rounded">Group</button>
+                    <input type="text" id="bulk-collection-input" placeholder="Set Collection..." class="bg-slate-50 text-indigo-950 placeholder:text-slate-400 text-xs sm:text-sm px-3 py-1 sm:py-1.5 rounded-full border-none outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all w-24 sm:w-auto">
+                    <button onclick="applyBulkCollection()" class="text-xs sm:text-sm font-bold text-purple-700 hover:text-purple-800 transition-colors whitespace-nowrap bg-purple-100 hover:bg-purple-200 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">Group</button>
                 </div>
-                <div class="h-4 sm:h-6 w-px bg-[#4a5d8a] hidden sm:block"></div>
-                <button onclick="deleteBulkWords()" class="text-xs sm:text-sm font-bold text-red-400 hover:text-red-300 transition-colors whitespace-nowrap flex items-center gap-1 w-full sm:w-auto justify-center mt-1 sm:mt-0 pt-1 sm:pt-0 border-t sm:border-0 border-[#2c3e6b]">
+                <div class="h-4 sm:h-6 w-px bg-slate-200 hidden sm:block"></div>
+                <button onclick="deleteBulkWords()" class="text-xs sm:text-sm font-bold text-red-400 hover:text-red-500 transition-colors whitespace-nowrap flex items-center gap-1 w-full sm:w-auto justify-center mt-1 sm:mt-0 pt-1 sm:pt-0 border-t sm:border-0 border-slate-100">
                     <i data-lucide="trash-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Delete
                 </button>
             </div>
             
-            <div id="manage-collections-modal" class="hidden absolute inset-0 z-[60] bg-[#1f2d4d]/90 backdrop-blur-sm flex items-center justify-center p-4">
-                <div class="bg-[#f7f5ef] w-full max-w-[95%] sm:max-w-md rounded-lg shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[80vh] border border-[#2c3e6b]">
-                    <div class="p-4 sm:p-5 bg-[#1a2238] flex justify-between items-center shrink-0 border-b border-[#2c3e6b]/50">
+            <div id="manage-collections-modal" class="hidden absolute inset-0 z-[60] bg-white/90 flex items-center justify-center p-4">
+                <div class="bg-white w-full max-w-[95%] sm:max-w-md rounded-[1.5rem] shadow-[0_20px_40px_-15px_rgba(107,114,128,0.25)] overflow-hidden flex flex-col max-h-[80vh] border border-slate-100">
+                    <div class="p-4 sm:p-5 bg-purple-50 flex justify-between items-center shrink-0 border-b border-slate-100">
                         <div class="flex items-center gap-2">
-                            <i data-lucide="folders" class="w-4 h-4 sm:w-5 sm:h-5 text-[#4a5d8a]"></i>
-                            <h3 class="text-[#f7f5ef] text-sm sm:text-base font-bold tracking-wide">Manage Collections</h3>
+                            <i data-lucide="folders" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-700"></i>
+                            <h3 class="text-indigo-950 text-sm sm:text-base font-bold tracking-wide">Manage Collections</h3>
                         </div>
-                        <button onclick="closeManageCollections()" class="text-[#4a5d8a] hover:text-[#f7f5ef] transition-colors"><i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <button onclick="closeManageCollections()" class="text-slate-400 hover:text-purple-700 transition-colors"><i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
                     </div>
-                    <div class="p-3 sm:p-4 bg-white/50 border-b border-[#2c3e6b]/10 text-[10px] sm:text-xs text-[#4a5d8a] font-medium shrink-0">
+                    <div class="p-3 sm:p-4 bg-white border-b border-slate-100 text-[10px] sm:text-xs text-slate-500 font-medium shrink-0">
                         Rename collections across all associated vocabulary, or unlink the collection entirely.
                     </div>
-                    <div id="collections-edit-list" class="p-3 sm:p-4 overflow-y-auto space-y-2 sm:space-y-3 aizome-scrollbar flex-1 bg-[#f7f5ef]/80">
+                    <div id="collections-edit-list" class="p-3 sm:p-4 overflow-y-auto space-y-2 sm:space-y-3 aizome-scrollbar flex-1 bg-white">
                         <!-- Populated by JS -->
                     </div>
                 </div>
@@ -544,6 +505,15 @@
     </div>
 
     <script>
+        // Safety net: if the lucide icon library hasn't loaded yet (slow network,
+        // ad-blocker, blocked CDN, etc.), calling lucide.createIcons() would throw
+        // and halt this entire script — which then leaves every `let` below in the
+        // temporal dead zone and breaks all button handlers. This shim guarantees
+        // the call never throws; if the real library finishes loading afterward it
+        // overwrites window.lucide itself and icons render normally.
+        if (typeof lucide === 'undefined') {
+            window.lucide = { createIcons: function () {} };
+        }
         lucide.createIcons();
 
         const defaultVocab = [
@@ -716,11 +686,11 @@
         function setAnswerFormat(format, btnElement) {
             currentAnswerFormat = format;
             document.querySelectorAll('.format-btn').forEach(btn => {
-                btn.classList.remove('bg-[#1a2238]', 'text-[#f7f5ef]', 'shadow-sm', 'active-format');
-                btn.classList.add('text-[#4a5d8a]');
+                btn.classList.remove('bg-purple-100', 'text-purple-700', 'shadow-sm', 'active-format');
+                btn.classList.add('text-slate-500');
             });
-            btnElement.classList.remove('text-[#4a5d8a]');
-            btnElement.classList.add('bg-[#1a2238]', 'text-[#f7f5ef]', 'shadow-sm', 'active-format');
+            btnElement.classList.remove('text-slate-500');
+            btnElement.classList.add('bg-purple-100', 'text-purple-700', 'shadow-sm', 'active-format');
         }
 
         function openManageVocab() {
@@ -801,37 +771,37 @@
             
             filteredVocab.forEach((word) => {
                 const div = document.createElement('div');
-                div.className = 'bg-[#f7f5ef] border border-[#2c3e6b]/20 rounded-md p-3 sm:p-4 flex flex-col justify-between hover:border-[#1a2238] hover:shadow-lg transition-all group relative overflow-hidden';
+                div.className = 'bg-white border border-slate-100 rounded-[1.5rem] p-3 sm:p-4 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(107,114,128,0.2)] transition-all group relative overflow-hidden shadow-[0_10px_25px_-15px_rgba(107,114,128,0.15)]';
                 div.innerHTML = `
                     <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10">
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" value="${word.originalIndex}" class="db-word-select hidden" onchange="handleDBSelect()">
-                            <div class="w-4 h-4 border border-[#2c3e6b]/50 rounded-sm mr-2 flex items-center justify-center transition-all bg-white group-hover:border-[#2c3e6b]">
+                            <div class="w-4 h-4 border-2 border-slate-200 rounded-full mr-2 flex items-center justify-center transition-all bg-white group-hover:border-purple-300">
                                 <svg class="w-3 h-3 text-white opacity-0 transform scale-50 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                             </div>
                         </label>
                         <div class="flex gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="editWord(${word.originalIndex})" class="text-[#4a5d8a] hover:text-[#1a2238] hover:bg-[#e0dcd0] p-1.5 rounded transition-colors" title="Edit">
+                            <button onclick="editWord(${word.originalIndex})" class="text-slate-400 hover:text-purple-700 hover:bg-purple-50 p-1.5 rounded-full transition-colors" title="Edit">
                                 <i data-lucide="edit-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                             </button>
-                            <button onclick="deleteWord(${word.originalIndex})" class="text-[#4a5d8a] hover:text-red-600 hover:bg-red-50 p-1.5 rounded transition-colors" title="Delete">
+                            <button onclick="deleteWord(${word.originalIndex})" class="text-slate-400 hover:text-red-500 hover:bg-red-50 p-1.5 rounded-full transition-colors" title="Delete">
                                 <i data-lucide="trash-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                             </button>
                         </div>
                     </div>
                     <div class="relative z-10 flex-1 flex flex-col justify-center mb-2 sm:mb-3">
-                        <span class="text-[#1a2238] font-black text-2xl sm:text-3xl jp-text leading-tight drop-shadow-sm break-words">${word.word}</span>
-                        ${word.romaji ? `<span class="text-[#4a5d8a] text-[10px] sm:text-xs font-mono font-semibold mt-1">${word.romaji}</span>` : ''}
+                        <span class="text-indigo-950 font-black text-2xl sm:text-3xl jp-text leading-tight break-words">${word.word}</span>
+                        ${word.romaji ? `<span class="text-slate-500 text-[10px] sm:text-xs font-mono font-semibold mt-1">${word.romaji}</span>` : ''}
                     </div>
-                    <div class="relative z-10 pt-2 sm:pt-3 border-t border-[#2c3e6b]/10 flex justify-between items-end gap-2">
-                        <span class="text-[#1a2238] text-xs sm:text-sm font-bold truncate flex-1 block" title="${word.meaning}">${word.meaning}</span>
+                    <div class="relative z-10 pt-2 sm:pt-3 border-t border-slate-100 flex justify-between items-end gap-2">
+                        <span class="text-indigo-950 text-xs sm:text-sm font-bold truncate flex-1 block" title="${word.meaning}">${word.meaning}</span>
                         <div class="flex flex-col items-end gap-1 shrink-0">
-                            <span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 bg-[#1a2238] text-[#f7f5ef] rounded-full uppercase tracking-widest font-bold">${word.type || 'custom'}</span>
-                            ${word.collection ? `<span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 border border-[#4a5d8a] text-[#4a5d8a] rounded-full uppercase tracking-widest font-bold truncate max-w-[80px]" title="${word.collection}">${word.collection}</span>` : ''}
+                            <span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full uppercase tracking-widest font-bold">${word.type || 'custom'}</span>
+                            ${word.collection ? `<span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 border border-slate-200 text-slate-500 rounded-full uppercase tracking-widest font-bold truncate max-w-[80px]" title="${word.collection}">${word.collection}</span>` : ''}
                         </div>
                     </div>
                     <style>
-                        input:checked + div { background-color: #1a2238; border-color: #1a2238; }
+                        input:checked + div { background-color: #c4b5fd; border-color: #c4b5fd; }
                         input:checked + div svg { opacity: 1; transform: scale(1); }
                     </style>
                 `;
@@ -863,7 +833,7 @@
                 document.getElementById('new-word-custom-type').value = word.type || 'custom';
             }
             
-            document.getElementById('form-title').innerHTML = '<i data-lucide="edit-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#4a5d8a]"></i> Edit Entry';
+            document.getElementById('form-title').innerHTML = '<i data-lucide="edit-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i> Edit Entry';
             document.getElementById('add-word-btn').innerHTML = '<i data-lucide="save" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Update Entry';
             document.getElementById('cancel-edit-btn').classList.remove('hidden');
             lucide.createIcons();
@@ -881,7 +851,7 @@
             document.getElementById('new-word-collection').value = '';
             cancelCustomTag();
             
-            document.getElementById('form-title').innerHTML = '<i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#4a5d8a]"></i> Register Entry';
+            document.getElementById('form-title').innerHTML = '<i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i> Register Entry';
             document.getElementById('add-word-btn').innerHTML = '<i data-lucide="plus" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Add to Database';
             document.getElementById('cancel-edit-btn').classList.add('hidden');
             lucide.createIcons();
@@ -954,21 +924,21 @@
             const collections = [...new Set(vocab.map(w => w.collection).filter(c => c && c.trim() !== ''))];
             
             if (collections.length === 0) {
-                list.innerHTML = '<p class="text-xs sm:text-sm text-[#4a5d8a] font-bold text-center py-4">No collections found.</p>';
+                list.innerHTML = '<p class="text-xs sm:text-sm text-slate-400 font-bold text-center py-4">No collections found.</p>';
                 return;
             }
 
             collections.forEach(col => {
                 const count = vocab.filter(w => w.collection === col).length;
                 const div = document.createElement('div');
-                div.className = 'flex items-center gap-2 sm:gap-3 bg-white p-2 sm:p-3 rounded shadow-sm border border-[#2c3e6b]/20 hover:border-[#4a5d8a] transition-colors';
+                div.className = 'flex items-center gap-2 sm:gap-3 bg-white p-2 sm:p-3 rounded-2xl shadow-sm border border-slate-100 hover:border-purple-200 transition-colors';
                 div.innerHTML = `
                     <div class="flex-1 flex flex-col">
-                        <input type="text" value="${col}" class="bg-transparent border-b-2 border-transparent hover:border-[#e0dcd0] focus:border-[#1a2238] focus:outline-none transition-colors px-1 py-1 text-xs sm:text-sm font-black text-[#1a2238] w-full" data-old-name="${col}">
-                        <span class="text-[9px] sm:text-[10px] text-[#4a5d8a] font-bold px-1">${count} words attached</span>
+                        <input type="text" value="${col}" class="bg-transparent border-b-2 border-transparent hover:border-slate-200 focus:border-purple-300 focus:outline-none transition-colors px-1 py-1 text-xs sm:text-sm font-black text-indigo-950 w-full" data-old-name="${col}">
+                        <span class="text-[9px] sm:text-[10px] text-slate-400 font-bold px-1">${count} words attached</span>
                     </div>
-                    <button onclick="renameCollection(this)" class="text-[9px] sm:text-[11px] uppercase tracking-wider font-bold bg-[#1a2238] hover:bg-[#2c3e6b] text-[#f7f5ef] px-2 sm:px-3 py-1.5 sm:py-2 rounded transition-colors shadow-sm">Rename</button>
-                    <button onclick="deleteCollection('${col}')" class="text-xs bg-transparent border border-red-300 hover:bg-red-50 text-red-600 px-2 sm:px-3 py-1.5 sm:py-2 rounded transition-colors" title="Unlink all words from this collection"><i data-lucide="unlink-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i></button>
+                    <button onclick="renameCollection(this)" class="text-[9px] sm:text-[11px] uppercase tracking-wider font-bold bg-purple-100 hover:bg-purple-200 text-purple-700 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full transition-colors">Rename</button>
+                    <button onclick="deleteCollection('${col}')" class="text-xs bg-transparent border-2 border-red-200 hover:bg-red-50 text-red-500 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full transition-colors" title="Unlink all words from this collection"><i data-lucide="unlink-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i></button>
                 `;
                 list.appendChild(div);
             });
@@ -995,10 +965,10 @@
             updateHomeCollections();
             
             btn.textContent = 'Saved!';
-            btn.classList.add('bg-green-600');
+            btn.classList.add('bg-green-200', 'text-green-800');
             setTimeout(() => {
                 btn.textContent = 'Rename';
-                btn.classList.remove('bg-green-600');
+                btn.classList.remove('bg-green-200', 'text-green-800');
             }, 1000);
         }
 
@@ -1076,7 +1046,7 @@
             
             const vocab = getLocalVocab();
             if (vocab.length === 0) {
-                listContainer.innerHTML = '<p class="text-[#4a5d8a] text-center mt-10 font-bold text-xs sm:text-sm">No words in database.</p>';
+                listContainer.innerHTML = '<p class="text-slate-400 text-center mt-10 font-bold text-xs sm:text-sm">No words in database.</p>';
                 return;
             }
             
@@ -1084,20 +1054,20 @@
                 const div = document.createElement('div');
                 div.className = 'w-full';
                 div.innerHTML = `
-                    <label class="aizome-checkbox flex items-center p-3 sm:p-4 bg-white/60 border border-[#2c3e6b]/20 hover:border-[#2c3e6b] cursor-pointer transition-colors group rounded-md shadow-sm">
+                    <label class="aizome-checkbox flex items-center p-3 sm:p-4 bg-white border border-slate-100 hover:border-purple-200 cursor-pointer transition-colors group rounded-2xl shadow-sm">
                         <input type="checkbox" value="${index}" class="custom-word-checkbox hidden" checked>
-                        <div class="w-4 h-4 sm:w-5 sm:h-5 border border-[#2c3e6b] bg-white mr-3 sm:mr-4 flex items-center justify-center transition-all shadow-inner rounded-sm shrink-0">
-                            <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f3f1ea] opacity-0 transform scale-50 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-4 h-4 sm:w-5 sm:h-5 border-2 border-slate-200 bg-white mr-3 sm:mr-4 flex items-center justify-center transition-all shadow-inner rounded-full shrink-0">
+                            <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white opacity-0 transform scale-50 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                         <div class="flex-1 flex justify-between items-center gap-2">
                             <div class="flex items-center gap-2 sm:gap-4 flex-1">
-                                <span class="text-[#1a2238] font-black text-xl sm:text-2xl jp-text min-w-[60px] sm:min-w-[80px] break-words">${word.word}</span>
+                                <span class="text-indigo-950 font-black text-xl sm:text-2xl jp-text min-w-[60px] sm:min-w-[80px] break-words">${word.word}</span>
                                 <div class="flex flex-col">
-                                    <span class="text-[#1a2238] font-bold text-xs sm:text-sm line-clamp-2">${word.meaning}</span>
-                                    ${word.romaji ? `<span class="text-[#4a5d8a] text-[9px] sm:text-[10px] font-mono">${word.romaji}</span>` : ''}
+                                    <span class="text-indigo-950 font-bold text-xs sm:text-sm line-clamp-2">${word.meaning}</span>
+                                    ${word.romaji ? `<span class="text-slate-500 text-[9px] sm:text-[10px] font-mono">${word.romaji}</span>` : ''}
                                 </div>
                             </div>
-                            <span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 sm:py-1 bg-[#1a2238] text-[#f7f5ef] uppercase tracking-wider font-bold rounded-full border border-transparent group-hover:border-[#4a5d8a] transition-all shrink-0">${word.type || 'Custom'}</span>
+                            <span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 sm:py-1 bg-purple-100 text-purple-700 uppercase tracking-wider font-bold rounded-full border border-transparent group-hover:border-purple-300 transition-all shrink-0">${word.type || 'Custom'}</span>
                         </div>
                     </label>
                 `;
@@ -1127,7 +1097,7 @@
                 if(!err) {
                     err = document.createElement('div');
                     err.id = 'custom-err';
-                    err.className = 'text-[#f7f5ef] bg-[#1a2238] border-l-4 border-[#4a5d8a] text-center mb-3 sm:mb-4 p-2.5 sm:p-3 font-bold text-xs sm:text-sm rounded shadow-sm';
+                    err.className = 'text-amber-800 bg-amber-100 border-l-4 border-amber-300 text-center mb-3 sm:mb-4 p-2.5 sm:p-3 font-bold text-xs sm:text-sm rounded-2xl shadow-sm';
                     err.textContent = 'Required: Select at least one word to proceed.';
                     listContainer.prepend(err);
                 }
@@ -1357,12 +1327,12 @@
             if (incorrectWords.length > 0) {
                 reviewSection.classList.remove('hidden');
                 reviewList.innerHTML = incorrectWords.map(w => 
-                    `<div class="flex justify-between items-center bg-white/60 border border-[#2c3e6b]/20 p-3 sm:p-4 rounded-md mb-2 shadow-sm">
+                    `<div class="flex justify-between items-center bg-slate-50 border border-slate-100 p-3 sm:p-4 rounded-2xl mb-2">
                         <div class="flex items-center gap-3 sm:gap-4 flex-1">
-                            <span class="font-black text-[#1a2238] text-lg sm:text-xl jp-text w-16 sm:w-20 break-words">${w.word}</span>
+                            <span class="font-black text-indigo-950 text-lg sm:text-xl jp-text w-16 sm:w-20 break-words">${w.word}</span>
                             <div class="flex flex-col">
-                                <span class="text-[#1a2238] font-bold text-xs sm:text-sm line-clamp-2">${w.meaning}</span>
-                                ${w.romaji ? `<span class="text-[#4a5d8a] text-[9px] sm:text-[10px] font-mono">${w.romaji}</span>` : ''}
+                                <span class="text-indigo-950 font-bold text-xs sm:text-sm line-clamp-2">${w.meaning}</span>
+                                ${w.romaji ? `<span class="text-slate-500 text-[9px] sm:text-[10px] font-mono">${w.romaji}</span>` : ''}
                             </div>
                         </div>
                     </div>`
