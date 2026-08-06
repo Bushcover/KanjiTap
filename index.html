@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en" data-motif="sakura">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ KanjiTap</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23FDFBF7'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23FDFBF7'/%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.5' cy='0.85' r='0.7'%3E%3Cstop offset='0' stop-color='%23f3e8ff'/%3E%3Cstop offset='1' stop-color='%23c4b5fd'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg transform='translate(50,50)'%3E%3Cg id='p'%3E%3Cpath d='M 0,0 C -9,-9 -10,-21 -3,-28 Q 0,-30.5 0,-26.5 Q 0,-30.5 3,-28 C 10,-21 9,-9 0,0 Z' fill='url(%23g)' stroke='%23a855f7' stroke-width='0.6' stroke-opacity='0.35'/%3E%3C/g%3E%3Cuse href='%23p' transform='rotate(0)'/%3E%3Cuse href='%23p' transform='rotate(72)'/%3E%3Cuse href='%23p' transform='rotate(144)'/%3E%3Cuse href='%23p' transform='rotate(216)'/%3E%3Cuse href='%23p' transform='rotate(288)'/%3E%3Ccircle r='4.5' fill='%237e22ce'/%3E%3Ccircle r='2.2' fill='%23c4b5fd'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#7e22ce">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --font-sans: 'Quicksand', sans-serif;
+            --font-jp: 'Klee One', cursive;
+        }
+
+        body { 
+            font-family: var(--font-sans); 
+            background-color: #FDFBF7;
+            color: #1e1b4b;
+        }
+        
+        .jp-text, #japanese-word { font-family: var(--font-jp); }
+
+        .sakura-card-surface {
+            background-color: #ffffff;
+            color: #1e1b4b;
+            border: none;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -15px rgba(107,114,128,0.12);
+        }
+
+        .sakura-hover-reveal {
+            position: relative;
+            overflow: hidden;
+            background-color: #f3e8ff;
+            color: #7e22ce;
+            border: none;
+            border-radius: 9999px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            z-index: 1;
+        }
+        .sakura-hover-reveal:hover {
+            background-color: #e9d5ff;
+            transform: translateY(-4px);
+        }
+        
+        .sakura-btn-secondary {
+            background-color: transparent;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+        }
+        .sakura-btn-secondary:hover {
+            background-color: #faf5ff;
+            border-color: #ddd6fe;
+            color: #7e22ce;
+        }
+        
+        .sakura-input {
+            background-color: #f8fafc;
+            border: none;
+            color: #1e1b4b;
+            border-radius: 9999px;
+            box-shadow: inset 0 2px 5px rgba(100,116,139,0.12);
+            transition: all 0.2s ease;
+        }
+        .sakura-input:focus {
+            outline: none;
+            background-color: #ffffff;
+            box-shadow: inset 0 2px 5px rgba(100,116,139,0.08), 0 0 0 4px #f3e8ff;
+        }
+
+        .sakura-checkbox input:checked + div {
+            background-color: #c4b5fd;
+            border-color: #c4b5fd;
+        }
+        .sakura-checkbox input:checked + div svg {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .sakura-scrollbar::-webkit-scrollbar { width: 8px; }
+        .sakura-scrollbar::-webkit-scrollbar-track { background: #f8fafc; border-radius: 4px; }
+        .sakura-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+        .sakura-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+        @keyframes dyeBloomAnim {
+            0% { transform: scale(0); opacity: 0.8; }
+            100% { transform: scale(25); opacity: 0; }
+        }
+        .dye-bloom {
+            position: absolute;
+            background-color: #dcfce7;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: dyeBloomAnim 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes sakuraShake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        @keyframes sakuraErrorColor {
+            0%, 100% { background-color: #ffffff; color: #1e1b4b; }
+            50% { background-color: #fef3c7; color: #92400e; }
+        }
+        .sakura-error-flash {
+            animation: sakuraShake 0.4s cubic-bezier(.36,.07,.19,.97) both, sakuraErrorColor 0.4s ease-in-out both;
+        }
+
+        .sprint-opt {
+            background-color: transparent;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        .sprint-opt.active {
+            background-color: #f3e8ff;
+            color: #7e22ce;
+            border-color: #f3e8ff;
+        }
+
+        .format-btn:not(.active-format):hover { background-color: transparent !important; }
+        .format-btn.active-format:hover { background-color: #e9d5ff !important; }
+
+        *:focus, *:focus-visible { outline: none !important; }
+        ::selection { background-color: #e9d5ff !important; color: #1e1b4b !important; }
+
+        button { touch-action: manipulation; }
+    </style>
+</head>
+<body class="min-h-[100dvh] flex items-center justify-center p-2 sm:p-4 md:p-6 selection:bg-purple-200 selection:text-indigo-950">
+
+    <div id="app-container" class="w-full max-w-md relative transition-all duration-500 ease-in-out">
+        
+        <div id="home-screen" class="sakura-card-surface p-5 sm:p-8 w-full">
+            
+            <div class="text-center mb-6 sm:mb-10 border-b border-slate-100 pb-6 sm:pb-8 relative">
+                <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full text-3xl sm:text-4xl mb-4 sm:mb-5 bg-purple-50 shadow-[0_10px_25px_-8px_rgba(168,85,247,0.35)] relative z-10 transition-transform duration-300 hover:-translate-y-1">
+                    🌸
+                </div>
+                <h1 class="text-3xl sm:text-4xl mb-1 sm:mb-2 relative z-10 font-black text-indigo-950 tracking-tight">
+                    ✨ KanjiTap
+                </h1>
+                <p class="text-slate-500 text-xs sm:text-sm font-semibold tracking-wide relative z-10">Master Japanese Vocabulary</p>
+            </div>
+
+            <!-- Mode Selection -->
+            <div class="mb-6 sm:mb-8">
+                <div class="flex justify-between items-end mb-2 sm:mb-3">
+                    <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold">Drill Mode</h3>
+                </div>
+                <div class="grid grid-cols-2 gap-2 sm:gap-3">
+                    <div class="flex flex-col gap-2">
+                        <button onclick="selectMode('sprint', this)" class="mode-btn sakura-hover-reveal w-full py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm active-mode">
+                            <i data-lucide="timer" class="w-4 h-4 mx-auto mb-1 opacity-80"></i> Sprint
+                        </button>
+                        <div id="sprint-time-options" class="flex gap-1 h-8">
+                            <button onclick="setSprintTime(30, this)" class="sprint-opt active flex-1 text-[10px] font-bold rounded-full tracking-wider">30s</button>
+                            <button onclick="setSprintTime(60, this)" class="sprint-opt flex-1 text-[10px] font-bold rounded-full tracking-wider">60s</button>
+                            <button onclick="setSprintTime(120, this)" class="sprint-opt flex-1 text-[10px] font-bold rounded-full tracking-wider">2m</button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col gap-2">
+                        <button onclick="selectMode('zen', this)" class="mode-btn sakura-btn-secondary w-full py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm h-[64px] sm:h-[72px]">
+                            <i data-lucide="infinity" class="w-4 h-4 mx-auto mb-1 opacity-80"></i> Zen (Practice)
+                        </button>
+                        <div id="zen-placeholder" class="h-8 flex items-center justify-center text-[9px] text-slate-400 font-mono uppercase tracking-widest hidden">Endless</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Selection -->
+            <div class="mb-5 sm:mb-6">
+                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-2 sm:mb-3">Vocabulary List</h3>
+                <div class="flex flex-wrap gap-2">
+                    <button data-cat="all" onclick="selectCategory('all', this)" class="cat-btn sakura-hover-reveal flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs active-cat">All Words</button>
+                    <button data-cat="noun" onclick="selectCategory('noun', this)" class="cat-btn sakura-btn-secondary flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Nouns</button>
+                    <button data-cat="verb" onclick="selectCategory('verb', this)" class="cat-btn sakura-btn-secondary flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Verbs</button>
+                    <button data-cat="adjective" onclick="selectCategory('adjective', this)" class="cat-btn sakura-btn-secondary flex-[1_1_45%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Adjectives</button>
+                    <button data-cat="custom" onclick="selectCategory('custom', this)" class="cat-btn sakura-btn-secondary flex-[1_1_45%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs flex items-center justify-center gap-1.5">
+                        <i data-lucide="list-checks" class="w-3.5 h-3.5"></i> Custom List...
+                    </button>
+                </div>
+            </div>
+
+            <!-- Answer Format Selection -->
+            <div class="mb-5 sm:mb-6">
+                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-2 sm:mb-3">Required Answer Format</h3>
+                <div class="flex flex-col sm:flex-row bg-slate-50 rounded-2xl border-2 border-slate-200 p-1 gap-1">
+                    <button onclick="setAnswerFormat('both', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded-xl bg-purple-100 text-purple-700 shadow-sm transition-all active-format">Any (Both)</button>
+                    <button onclick="setAnswerFormat('meaning', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded-xl text-slate-500 hover:bg-purple-50 transition-all">English Only</button>
+                    <button onclick="setAnswerFormat('romaji', this)" class="format-btn flex-1 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold rounded-xl text-slate-500 hover:bg-purple-50 transition-all">Romaji Only</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Collections Section -->
+            <div id="collections-section" class="mb-8 sm:mb-10 hidden">
+                <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-2 sm:mb-3 border-t border-slate-100 pt-4">Your Collections</h3>
+                <div id="collections-list" class="flex flex-wrap gap-2">
+                    <!-- Populated dynamically by JS -->
+                </div>
+            </div>
+
+            <button onclick="startDrill()" class="sakura-hover-reveal w-full py-3.5 sm:py-4 font-bold text-base sm:text-lg tracking-wide shadow-lg flex justify-center items-center gap-2 group">
+                Begin Session <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+
+            <div class="mt-5 sm:mt-6 pt-4 sm:pt-5 text-center border-t border-slate-100">
+                <button onclick="openManageVocab()" class="text-[11px] sm:text-xs font-semibold text-slate-400 hover:text-purple-700 transition-colors flex items-center justify-center gap-2 w-full py-2">
+                    <i data-lucide="database" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Manage Database
+                </button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="hidden w-full relative">
+            <div class="absolute -top-10 left-0 w-full text-center">
+                <div id="status-hud" class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-white text-indigo-950 border border-slate-200 text-[9px] sm:text-[10px] font-mono uppercase tracking-widest shadow-sm rounded-full opacity-90 whitespace-nowrap scale-95 sm:scale-100">
+                    <span id="hud-mode">Mode: Sprint</span>
+                    <span class="w-1 h-1 rounded-full bg-purple-300"></span>
+                    <span id="hud-list">List: All</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-3 sm:mb-5 sakura-card-surface p-2.5 sm:p-3 px-4 sm:px-5">
+                <div class="flex-1 flex justify-start">
+                    <div id="timer-display" class="text-lg sm:text-xl font-black text-indigo-950 flex items-center gap-1.5 sm:gap-2">
+                        <i data-lucide="clock" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-400"></i>
+                        <span id="time-left-val" class="tracking-tighter">30s</span>
+                    </div>
+                </div>
+                <div class="flex-1 flex justify-center">
+                    <button id="quit-btn" onclick="goHome()" class="text-[10px] sm:text-xs font-bold text-purple-700 bg-purple-100 hover:bg-purple-200 py-1 sm:py-1.5 px-3 sm:px-4 rounded-full transition-colors whitespace-nowrap">
+                        Quit Drill
+                    </button>
+                </div>
+                <div class="flex-1 flex justify-end">
+                    <div class="text-lg sm:text-xl font-black text-indigo-950 flex items-center gap-1.5 sm:gap-2">
+                        <span id="score-display" class="tracking-tighter">0</span>
+                        <i data-lucide="check-circle-2" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div id="flashcard" class="w-full sakura-card-surface p-6 sm:p-10 flex flex-col items-center justify-center min-h-[220px] aspect-auto sm:aspect-[4/3] sm:min-h-0 mb-4 sm:mb-5 relative overflow-hidden group">
+                <div class="card-content-layer w-full h-full flex flex-col items-center justify-center transition-transform duration-200 z-10" id="card-inner">
+                    <h2 id="japanese-word" class="jp-text text-5xl sm:text-7xl leading-none font-black text-indigo-950 mb-6 sm:mb-8 text-center break-words px-2">---</h2>
+                    
+                    <div id="correct-answer-reveal" class="absolute bottom-4 sm:bottom-6 flex flex-col items-center justify-center opacity-0 transition-opacity duration-200">
+                        <div class="text-xs sm:text-sm font-bold text-purple-700 bg-purple-100 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full shadow-sm tracking-wide mb-1" id="reveal-meaning">---</div>
+                        <div class="text-[9px] sm:text-[10px] text-slate-500 font-mono uppercase tracking-widest font-bold" id="reveal-romaji">---</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2.5 sm:gap-3">
+                <div class="relative sakura-card-surface p-1.5 sm:p-2 shadow-sm">
+                    <input type="text" id="answer-input" autocomplete="off" placeholder="Type meaning or romaji..." class="sakura-input w-full px-3 sm:px-4 py-3.5 sm:py-5 text-lg sm:text-xl font-bold text-center focus:ring-4 focus:ring-purple-100 focus:outline-none">
+                </div>
+                <div class="flex gap-2">
+                    <button id="skip-btn" onclick="handleSkip()" class="flex-[1] sakura-btn-secondary py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm flex flex-col items-center justify-center bg-white/50">
+                        Skip <span class="text-[8px] sm:text-[9px] text-slate-400 mt-0.5 sm:mt-1 uppercase tracking-widest font-mono">Press ?</span>
+                    </button>
+                    <button id="submit-btn" onclick="checkAnswer()" class="flex-[2] sakura-hover-reveal py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm flex flex-col items-center justify-center shadow-md">
+                        Submit <span class="text-[8px] sm:text-[9px] text-purple-700/70 mt-0.5 sm:mt-1 uppercase tracking-widest font-mono">Press Enter</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAME OVER SCREEN -->
+        <div id="game-over-screen" class="hidden w-full sakura-card-surface p-5 sm:p-8 relative overflow-hidden">
+            <div class="text-center mb-6 sm:mb-8 border-b border-slate-100 pb-6 sm:pb-8 relative z-10">
+                <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full text-2xl sm:text-3xl mb-3 sm:mb-4 bg-purple-50">
+                    🎉
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-indigo-950 mb-1">Session Complete</h2>
+                <p class="text-slate-500 text-xs sm:text-sm font-medium">Drill performance analytics.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8 relative z-10">
+                <div class="p-4 sm:p-5 border border-slate-100 rounded-2xl text-center flex flex-col items-center justify-center bg-slate-50/60">
+                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">Total Score</div>
+                    <div class="text-4xl sm:text-5xl font-black text-indigo-950" id="final-score">0</div>
+                </div>
+                <div class="p-4 sm:p-5 border border-slate-100 rounded-2xl text-center flex flex-col items-center justify-center bg-slate-50/60">
+                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">Accuracy</div>
+                    <div class="text-2xl sm:text-3xl font-black text-indigo-950 mt-1 sm:mt-2" id="accuracy-display">0%</div>
+                </div>
+            </div>
+
+            <div id="review-section" class="hidden mb-6 sm:mb-8 relative z-10">
+                <div class="flex items-center gap-2 mb-2 sm:mb-3">
+                    <i data-lucide="book-open-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i>
+                    <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-indigo-950 font-bold">Needs Review</h3>
+                </div>
+                <div id="review-list" class="max-h-48 sm:max-h-56 overflow-y-auto space-y-2 pr-2 sakura-scrollbar">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="flex gap-2 sm:gap-3 relative z-10">
+                <button onclick="goHome()" class="flex-[1] py-2.5 sm:py-3.5 sakura-btn-secondary font-bold text-xs sm:text-sm bg-white/50">Menu</button>
+                <button onclick="startDrill()" class="flex-[2] py-2.5 sm:py-3.5 sakura-hover-reveal font-bold text-xs sm:text-sm shadow-md flex justify-center items-center gap-2">
+                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Drill Again
+                </button>
+            </div>
+        </div>
+
+        <!-- CUSTOM AD-HOC SELECTION SCREEN -->
+        <div id="custom-selection-screen" class="hidden w-full sakura-card-surface flex flex-col h-[90dvh] sm:h-[85dvh] sm:max-h-[800px] overflow-hidden">
+            <div class="p-4 sm:p-6 border-b border-slate-100 shrink-0 text-center relative bg-white">
+                <h2 class="text-xl sm:text-2xl font-black text-indigo-950 mb-1">Build Custom Drill</h2>
+                <p class="text-slate-500 text-[10px] sm:text-xs font-medium">Select specific vocabulary to include for this session.</p>
+            </div>
+            
+            <div class="flex justify-between items-center px-4 sm:px-6 py-2 sm:py-3 shrink-0 bg-slate-50 border-b border-slate-100">
+                <span class="text-indigo-950 text-[10px] sm:text-xs font-bold uppercase tracking-wider">Word Bank</span>
+                <div class="flex gap-1.5 sm:gap-2">
+                    <button onclick="toggleAllCustom(true)" class="text-[9px] sm:text-[10px] font-bold text-purple-700 bg-purple-100 hover:bg-purple-200 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-colors uppercase tracking-wider">Select All</button>
+                    <button onclick="toggleAllCustom(false)" class="text-[9px] sm:text-[10px] font-bold text-slate-500 bg-transparent border-2 border-slate-200 hover:border-purple-200 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-colors uppercase tracking-wider">Clear</button>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2 sm:space-y-3 sakura-scrollbar bg-white" id="custom-selection-list">
+                <!-- Checkboxes populated by JS -->
+            </div>
+            
+            <div class="flex gap-2 sm:gap-3 shrink-0 p-4 sm:p-5 border-t border-slate-100 bg-white">
+                <button onclick="goHome()" class="flex-[1] py-2.5 sm:py-3 sakura-btn-secondary font-bold text-xs sm:text-sm">Cancel</button>
+                <button onclick="startSelectedCustomDrill()" class="flex-[2] py-2.5 sm:py-3 sakura-hover-reveal font-bold text-xs sm:text-sm shadow-md">Start Drill</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="manage-vocab-screen" class="hidden fixed inset-0 z-50 bg-[#FDFBF7] flex flex-col">
+        
+        <div class="px-4 sm:px-6 py-3 sm:py-4 bg-white/90 border-b border-slate-100 flex justify-between items-center shrink-0 relative z-20">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 text-purple-700 flex items-center justify-center rounded-full bg-purple-100">
+                    <i data-lucide="database" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </div>
+                <div>
+                    <h2 class="text-base sm:text-xl font-black text-indigo-950 tracking-wide leading-tight">Vocabulary Database</h2>
+                    <p class="text-slate-500 text-[9px] sm:text-xs font-medium hidden sm:block">Manage entries, edit words, and organize collections.</p>
+                </div>
+            </div>
+            <button onclick="goHome()" class="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-slate-500 bg-transparent border-2 border-slate-200 hover:border-purple-200 hover:text-purple-700 transition-all rounded-full">
+                <i data-lucide="x" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">Close</span>
+            </button>
+        </div>
+
+        <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative z-10">
+            
+            <!-- Mobile Modal Wrapper / Desktop Left Pane Container -->
+            <div id="mobile-form-modal" class="hidden md:flex fixed inset-0 z-[100] bg-white/90 p-4 items-center justify-center md:relative md:inset-auto md:z-auto md:bg-transparent md:p-0 md:items-stretch">
+                <!-- Inner Add / Edit Word Form -->
+                <div class="w-full max-w-md md:max-w-none md:w-80 lg:w-96 bg-white flex flex-col shrink-0 border border-slate-100 md:border-b-0 md:border-t-0 md:border-l-0 md:border-r shadow-[0_20px_40px_-15px_rgba(107,114,128,0.15)] rounded-[1.5rem] md:rounded-none md:rounded-l-[1.5rem] overflow-hidden h-fit max-h-[90dvh] md:max-h-[calc(100vh-80px)] m-auto md:my-6 md:ml-6 md:mr-0 relative">
+                    <div class="p-4 sm:p-6 pb-3 sm:pb-4 border-b border-slate-100 bg-white flex justify-between items-center relative">
+                        <h3 id="form-title" class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-indigo-950 font-black flex items-center gap-1.5 sm:gap-2">
+                            <i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i> Register Entry
+                        </h3>
+                        <button type="button" onclick="closeMobileAddForm()" class="md:hidden text-slate-400 hover:text-purple-700 transition-colors p-1 bg-slate-50 rounded-full border border-slate-200">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-3 sm:space-y-4 sakura-scrollbar">
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Japanese (Kana/Kanji)</label>
+                            <input type="text" id="new-word-jp" placeholder="e.g. ねこ" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 jp-text font-bold text-base sm:text-lg bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all shadow-inner">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Romaji (Reading)</label>
+                            <input type="text" id="new-word-romaji" placeholder="e.g. neko" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 font-medium bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all text-xs sm:text-sm shadow-inner">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">English Meaning(s)</label>
+                            <input type="text" id="new-word-en" placeholder="e.g. cat (comma-separated)" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 font-medium bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all text-xs sm:text-sm shadow-inner">
+                        </div>
+                        <div class="relative">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Category / POS</label>
+                            <select id="new-word-type" onchange="handleTypeChange(this)" class="w-full bg-slate-50 text-indigo-950 border-none outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 px-4 sm:px-5 py-2.5 sm:py-3 font-medium cursor-pointer rounded-full text-xs sm:text-sm transition-all appearance-none shadow-inner">
+                                <option value="noun">Noun</option>
+                                <option value="verb">Verb</option>
+                                <option value="adjective">Adjective</option>
+                                <option value="custom_trigger">Custom Tag...</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="absolute right-4 top-[32px] sm:top-[36px] w-4 h-4 text-slate-400 pointer-events-none"></i>
+                            
+                            <div id="custom-tag-container" class="hidden absolute inset-0 pt-[20px] sm:pt-[22px] items-center bg-white z-10 rounded-full">
+                                <input type="text" id="new-word-custom-type" placeholder="e.g. greeting" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-bold bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 shadow-inner pr-10 transition-all">
+                                <button onclick="cancelCustomTag()" class="absolute right-2 top-[28px] sm:top-[30px] text-slate-400 hover:text-purple-700 p-1 bg-white rounded-full"><i data-lucide="x" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i></button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Collection (Optional)</label>
+                            <input type="text" id="new-word-collection" placeholder="e.g. Animals" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 font-medium bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all text-xs sm:text-sm shadow-inner">
+                        </div>
+                        
+                        <div id="add-error" class="text-amber-800 bg-amber-100 border-l-4 border-amber-300 p-2.5 sm:p-3 text-[10px] sm:text-[11px] font-bold hidden rounded-2xl shadow-sm">
+                            Required fields: Japanese & English.
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 sm:p-6 border-t border-slate-100 bg-white shrink-0 flex flex-col gap-2">
+                        <button id="add-word-btn" onclick="addNewWord()" class="w-full py-2.5 sm:py-3.5 bg-purple-100 hover:bg-purple-200 text-purple-700 font-bold text-sm transition-all hover:-translate-y-1 rounded-full flex items-center justify-center gap-2">
+                            <i data-lucide="plus" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Add to Database
+                        </button>
+                        <button id="cancel-edit-btn" onclick="cancelEdit()" class="hidden w-full py-2 sm:py-2.5 bg-transparent border-2 border-slate-200 text-slate-500 hover:border-purple-200 hover:text-purple-700 font-bold transition-colors rounded-full text-xs sm:text-sm">
+                            Cancel Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Pane: The Database List -->
+            <div class="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 md:pb-24 sakura-scrollbar relative">
+                <div class="max-w-6xl mx-auto h-full flex flex-col">
+                    
+                    <!-- Mobile 'Add Word' Trigger -->
+                    <button onclick="openMobileAddForm()" class="md:hidden w-full mb-4 py-3 sm:py-3.5 bg-purple-100 hover:bg-purple-200 text-purple-700 font-black text-sm transition-all hover:-translate-y-1 rounded-full flex items-center justify-center gap-2">
+                        <i data-lucide="plus-circle" class="w-4 h-4 sm:w-5 sm:h-5"></i> Add New Word
+                    </button>
+
+                    <!-- Filtering and Search Bar -->
+                    <div class="bg-white p-3 sm:p-4 rounded-[1.5rem] border border-slate-100 mb-4 sm:mb-6 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-center justify-between sticky top-0 z-20 shadow-[0_10px_30px_-15px_rgba(107,114,128,0.15)]">
+                        <div class="flex items-center gap-2 bg-slate-50 rounded-full px-4 py-1.5 sm:py-2 w-full md:w-64 focus-within:ring-4 focus-within:ring-purple-100 transition-all">
+                            <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+                            <input type="text" id="db-search" oninput="renderVocabManagerList()" placeholder="Search word, meaning..." class="bg-transparent text-indigo-950 text-xs sm:text-sm outline-none focus:outline-none focus:ring-0 w-full placeholder:text-slate-400 transition-all">
+                        </div>
+                        
+                        <div class="flex w-full sm:w-auto flex-wrap gap-2 sm:gap-3 items-center justify-between sm:justify-start">
+                            <select id="db-filter" onchange="renderVocabManagerList()" class="bg-slate-50 border-none text-indigo-950 outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 p-1.5 sm:p-2 rounded-full text-[10px] sm:text-sm transition-all w-[calc(50%-0.25rem)] sm:w-auto px-3">
+                                <option value="all">All Categories</option>
+                                <option value="noun">Nouns</option>
+                                <option value="verb">Verbs</option>
+                                <option value="adjective">Adjectives</option>
+                                <option value="custom">Custom Tags</option> 
+                            </select>
+                            <select id="db-col-filter" onchange="renderVocabManagerList()" class="bg-slate-50 border-none text-indigo-950 outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 p-1.5 sm:p-2 rounded-full text-[10px] sm:text-sm sm:min-w-[140px] transition-all w-[calc(50%-0.25rem)] sm:w-auto px-3">
+                                <option value="all">All Collections</option>
+                            </select>
+                            
+                            <button onclick="openManageCollections()" class="bg-purple-100 hover:bg-purple-200 text-purple-700 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-sm font-bold transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto mt-1 sm:mt-0" title="Manage Collections">
+                                <i data-lucide="folders" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Manage
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-3 sm:mb-4 px-1 sm:px-2">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-500 tracking-wide"><span id="db-count">0</span> Entries Displayed</h3>
+                    </div>
+                    
+                    <!-- Grid -->
+                    <div id="vocab-manager-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pb-10">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Bulk Action Bar -->
+            <div id="bulk-action-bar" class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 bg-white border border-slate-100 shadow-[0_20px_40px_-15px_rgba(107,114,128,0.25)] rounded-2xl sm:rounded-full px-3 sm:px-6 py-2 sm:py-3 flex flex-wrap sm:flex-nowrap justify-center items-center gap-2 sm:gap-4 w-[95%] sm:w-auto transition-all duration-300 translate-y-24 opacity-0 z-50 pointer-events-none">
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                    <span id="bulk-count" class="text-[10px] sm:text-xs font-black text-purple-700 bg-purple-100 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">0</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-indigo-950 uppercase tracking-wider">Selected</span>
+                </div>
+                <div class="h-4 sm:h-6 w-px bg-slate-200 hidden sm:block"></div>
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                    <input type="text" id="bulk-collection-input" placeholder="Set Collection..." class="bg-slate-50 text-indigo-950 placeholder:text-slate-400 text-xs sm:text-sm px-3 py-1 sm:py-1.5 rounded-full border-none outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all w-24 sm:w-auto">
+                    <button onclick="applyBulkCollection()" class="text-xs sm:text-sm font-bold text-purple-700 hover:text-purple-800 transition-colors whitespace-nowrap bg-purple-100 hover:bg-purple-200 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">Group</button>
+                </div>
+                <div class="h-4 sm:h-6 w-px bg-slate-200 hidden sm:block"></div>
+                <button onclick="deleteBulkWords()" class="text-xs sm:text-sm font-bold text-red-400 hover:text-red-500 transition-colors whitespace-nowrap flex items-center gap-1 w-full sm:w-auto justify-center mt-1 sm:mt-0 pt-1 sm:pt-0 border-t sm:border-0 border-slate-100">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Delete
+                </button>
+            </div>
+            
+            <div id="manage-collections-modal" class="hidden absolute inset-0 z-[60] bg-white/90 flex items-center justify-center p-4">
+                <div class="bg-white w-full max-w-[95%] sm:max-w-md rounded-[1.5rem] shadow-[0_20px_40px_-15px_rgba(107,114,128,0.25)] overflow-hidden flex flex-col max-h-[80dvh] border border-slate-100">
+                    <div class="p-4 sm:p-5 bg-purple-50 flex justify-between items-center shrink-0 border-b border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="folders" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-700"></i>
+                            <h3 class="text-indigo-950 text-sm sm:text-base font-bold tracking-wide">Manage Collections</h3>
+                        </div>
+                        <button onclick="closeManageCollections()" class="text-slate-400 hover:text-purple-700 transition-colors"><i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                    </div>
+                    <div class="p-3 sm:p-4 bg-white border-b border-slate-100 text-[10px] sm:text-xs text-slate-500 font-medium shrink-0">
+                        Rename collections across all associated vocabulary, or unlink the collection entirely.
+                    </div>
+                    <div id="collections-edit-list" class="p-3 sm:p-4 overflow-y-auto space-y-2 sm:space-y-3 sakura-scrollbar flex-1 bg-white">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Safety net: if the lucide icon library hasn't loaded yet (slow network,
+        // ad-blocker, blocked CDN, etc.), calling lucide.createIcons() would throw
+        // and halt this entire script — which then leaves every `let` below in the
+        // temporal dead zone and breaks all button handlers. This shim guarantees
+        // the call never throws; if the real library finishes loading afterward it
+        // overwrites window.lucide itself and icons render normally.
+        if (typeof lucide === 'undefined') {
+            window.lucide = { createIcons: function () {} };
+        }
+        lucide.createIcons();
+
+        const defaultVocab = [
+            { word: 'ねこ', meaning: 'cat', romaji: 'neko', type: 'noun', collection: 'Animals' },
+            { word: 'いぬ', meaning: 'dog', romaji: 'inu', type: 'noun', collection: 'Animals' },
+            { word: 'みず', meaning: 'water', romaji: 'mizu', type: 'noun', collection: 'Basics' },
+            { word: 'せんせい', meaning: 'teacher', romaji: 'sensei', type: 'noun', collection: 'School' },
+            { word: 'がくせい', meaning: 'student', romaji: 'gakusei', type: 'noun', collection: 'School' },
+            { word: 'ほん', meaning: 'book', romaji: 'hon', type: 'noun', collection: 'School' },
+            { word: 'くるま', meaning: 'car', romaji: 'kuruma', type: 'noun' },
+            { word: 'ひと', meaning: 'person', romaji: 'hito', type: 'noun', collection: 'Basics' },
+            { word: 'ともだち', meaning: 'friend', romaji: 'tomodachi', type: 'noun' },
+            { word: 'じかん', meaning: 'time', romaji: 'jikan', type: 'noun' },
+            { word: 'たべる', meaning: 'eat', romaji: 'taberu', type: 'verb', collection: 'Basics' },
+            { word: 'のむ', meaning: 'drink', romaji: 'nomu', type: 'verb', collection: 'Basics' },
+            { word: 'みる', meaning: 'see', romaji: 'miru', type: 'verb' },
+            { word: 'きく', meaning: 'listen', romaji: 'kiku', type: 'verb' },
+            { word: 'いく', meaning: 'go', romaji: 'iku', type: 'verb' },
+            { word: 'くる', meaning: 'come', romaji: 'kuru', type: 'verb' },
+            { word: 'する', meaning: 'do', romaji: 'suru', type: 'verb' },
+            { word: 'はなす', meaning: 'speak', romaji: 'hanasu', type: 'verb' },
+            { word: 'よむ', meaning: 'read', romaji: 'yomu', type: 'verb', collection: 'School' },
+            { word: 'かく', meaning: 'write', romaji: 'kaku', type: 'verb', collection: 'School' },
+            { word: 'おおきい', meaning: 'big', romaji: 'ookii', type: 'adjective' },
+            { word: 'ちいさい', meaning: 'small', romaji: 'chiisai', type: 'adjective' },
+            { word: 'たかい', meaning: 'high', romaji: 'takai', type: 'adjective' },
+            { word: 'やすい', meaning: 'cheap', romaji: 'yasui', type: 'adjective' },
+            { word: 'あたらしい', meaning: 'new', romaji: 'atarashii', type: 'adjective' },
+            { word: 'ふるい', meaning: 'old', romaji: 'furui', type: 'adjective' },
+            { word: 'いい', meaning: 'good', romaji: 'ii', type: 'adjective' },
+            { word: 'わるい', meaning: 'bad', romaji: 'warui', type: 'adjective' },
+            { word: 'あつい', meaning: 'hot', romaji: 'atsui', type: 'adjective' },
+            { word: 'さむい', meaning: 'cold', romaji: 'samui', type: 'adjective' },
+            { word: 'こんにちは', meaning: 'hello', romaji: 'konnichiwa', type: 'greeting', collection: 'Basics' } 
+        ];
+
+        let currentMode = 'sprint';
+        let sprintDuration = 30; 
+        let currentCategory = 'all';
+        let currentCollectionName = '';
+        let currentAnswerFormat = 'both';
+        
+        let masterWordsList = [];
+        let currentWordsList = [];
+        let shuffleBag = []; 
+        let currentWord = null;
+        
+        let score = 0;
+        let timeLeft = 30;
+        let timerInterval;
+        let incorrectWords = [];
+        let totalAttempts = 0;
+        let gameActive = false;
+        
+        let dbEditingIndex = -1;
+
+        function init() {
+            if (!localStorage.getItem('n5VocabList')) {
+                localStorage.setItem('n5VocabList', JSON.stringify(defaultVocab));
+            }
+            masterWordsList = getLocalVocab();
+            updateHomeCollections();
+        }
+
+        function getLocalVocab() {
+            return JSON.parse(localStorage.getItem('n5VocabList') || '[]');
+        }
+
+        (function initSakuraMechanics() {
+            window.triggerSakuraBloom = function(elementId) {
+                if (document.documentElement.getAttribute('data-motif') !== 'sakura') return;
+                const el = document.getElementById(elementId);
+                if(!el) return;
+                
+                const bloom = document.createElement('div');
+                bloom.className = 'dye-bloom';
+                bloom.style.left = `calc(50% - 15px)`;
+                bloom.style.top = `calc(50% - 15px)`;
+                el.appendChild(bloom);
+                
+                setTimeout(() => bloom.remove(), 800);
+            };
+
+            window.triggerSakuraShake = function(elementId) {
+                if (document.documentElement.getAttribute('data-motif') !== 'sakura') return;
+                const el = document.getElementById(elementId);
+                if(!el) return;
+                
+                el.classList.remove('sakura-error-flash');
+                void el.offsetWidth; 
+                el.classList.add('sakura-error-flash');
+            };
+        })();
+
+        function goHome() {
+            document.getElementById('game-screen').classList.add('hidden');
+            document.getElementById('game-over-screen').classList.add('hidden');
+            document.getElementById('manage-vocab-screen').classList.add('hidden');
+            const customScreen = document.getElementById('custom-selection-screen');
+            if(customScreen) customScreen.classList.add('hidden');
+            
+            document.getElementById('home-screen').classList.remove('hidden');
+            clearInterval(timerInterval);
+            init(); 
+        }
+
+        function updateHomeCollections() {
+            const vocab = getLocalVocab();
+            const collections = [...new Set(vocab.map(w => w.collection).filter(c => c && c.trim() !== ''))];
+            
+            const section = document.getElementById('collections-section');
+            const list = document.getElementById('collections-list');
+            list.innerHTML = '';
+            
+            if (collections.length === 0) {
+                section.classList.add('hidden');
+                return;
+            }
+            
+            section.classList.remove('hidden');
+            collections.forEach(col => {
+                const btn = document.createElement('button');
+                btn.className = `cat-btn sakura-btn-secondary flex-auto min-w-[30%] max-w-full py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center gap-1.5`;
+                btn.innerHTML = `<i data-lucide="folder" class="w-3.5 h-3.5 opacity-70"></i> ${col}`;
+                btn.onclick = (e) => {
+                    selectCategory('collection', e.currentTarget);
+                    currentCollectionName = col;
+                };
+                list.appendChild(btn);
+            });
+            lucide.createIcons();
+        }
+
+        function selectMode(mode, btnElement) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('sakura-hover-reveal', 'active-mode');
+                btn.classList.add('sakura-btn-secondary');
+            });
+            btnElement.classList.remove('sakura-btn-secondary');
+            btnElement.classList.add('sakura-hover-reveal', 'active-mode');
+
+            const timeOpts = document.getElementById('sprint-time-options');
+            const zenPlaceholder = document.getElementById('zen-placeholder');
+            if(mode === 'sprint') {
+                timeOpts.classList.remove('hidden');
+                zenPlaceholder.classList.add('hidden');
+            } else {
+                timeOpts.classList.add('hidden');
+                zenPlaceholder.classList.remove('hidden');
+            }
+        }
+
+        function setSprintTime(time, btnElement) {
+            sprintDuration = time;
+            document.querySelectorAll('.sprint-opt').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+
+        function selectCategory(cat, btnElement) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('sakura-hover-reveal', 'active-cat');
+                btn.classList.add('sakura-btn-secondary');
+            });
+            btnElement.classList.remove('sakura-btn-secondary');
+            btnElement.classList.add('sakura-hover-reveal', 'active-cat');
+        }
+
+        function setAnswerFormat(format, btnElement) {
+            currentAnswerFormat = format;
+            document.querySelectorAll('.format-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-100', 'text-purple-700', 'shadow-sm', 'active-format');
+                btn.classList.add('text-slate-500');
+            });
+            btnElement.classList.remove('text-slate-500');
+            btnElement.classList.add('bg-purple-100', 'text-purple-700', 'shadow-sm', 'active-format');
+        }
+
+        function openManageVocab() {
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('manage-vocab-screen').classList.remove('hidden');
+            cancelEdit();
+            updateCollectionFilterOptions();
+            renderVocabManagerList();
+        }
+
+        function openMobileAddForm() {
+            const modal = document.getElementById('mobile-form-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMobileAddForm() {
+            const modal = document.getElementById('mobile-form-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        
+        function updateCollectionFilterOptions() {
+            const vocab = getLocalVocab();
+            const collections = [...new Set(vocab.map(w => w.collection).filter(c => c && c.trim() !== ''))];
+            const filter = document.getElementById('db-col-filter');
+            
+            filter.innerHTML = '<option value="all">All Collections</option>';
+            collections.forEach(col => {
+                const opt = document.createElement('option');
+                opt.value = col;
+                opt.textContent = col;
+                filter.appendChild(opt);
+            });
+        }
+
+        function handleTypeChange(selectEl) {
+            const customContainer = document.getElementById('custom-tag-container');
+            if (selectEl.value === 'custom_trigger') {
+                customContainer.classList.remove('hidden');
+                customContainer.classList.add('flex');
+                document.getElementById('new-word-custom-type').focus();
+            } else {
+                customContainer.classList.add('hidden');
+                customContainer.classList.remove('flex');
+            }
+        }
+
+        function cancelCustomTag() {
+            document.getElementById('new-word-type').value = 'noun';
+            const customContainer = document.getElementById('custom-tag-container');
+            customContainer.classList.add('hidden');
+            customContainer.classList.remove('flex');
+            document.getElementById('new-word-custom-type').value = '';
+        }
+
+        function renderVocabManagerList() {
+            const listContainer = document.getElementById('vocab-manager-list');
+            listContainer.innerHTML = '';
+            const vocab = getLocalVocab();
+            
+            const q = document.getElementById('db-search').value.toLowerCase();
+            const t = document.getElementById('db-filter').value;
+            const c = document.getElementById('db-col-filter').value;
+            
+            const filteredVocab = vocab.map((w, index) => ({...w, originalIndex: index}))
+                .filter(w => {
+                    const matchQ = !q || w.word.toLowerCase().includes(q) || w.meaning.toLowerCase().includes(q) || (w.romaji && w.romaji.toLowerCase().includes(q));
+                    const isStandardType = ['noun', 'verb', 'adjective'].includes(w.type?.toLowerCase());
+                    const matchT = t === 'all' || 
+                                   (t === 'custom' && !isStandardType) || 
+                                   (w.type && w.type.toLowerCase().includes(t));
+                    const matchC = c === 'all' || w.collection === c;
+                    return matchQ && matchT && matchC;
+                });
+            
+            document.getElementById('db-count').textContent = filteredVocab.length;
+            
+            filteredVocab.forEach((word) => {
+                const div = document.createElement('div');
+                div.className = 'bg-white border border-slate-100 rounded-[1.5rem] p-3 sm:p-4 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(107,114,128,0.2)] transition-all group relative overflow-hidden shadow-[0_10px_25px_-15px_rgba(107,114,128,0.15)]';
+                div.innerHTML = `
+                    <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" value="${word.originalIndex}" class="db-word-select hidden" onchange="handleDBSelect()">
+                            <div class="w-4 h-4 border-2 border-slate-200 rounded-full mr-2 flex items-center justify-center transition-all bg-white group-hover:border-purple-300">
+                                <svg class="w-3 h-3 text-white opacity-0 transform scale-50 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                        </label>
+                        <div class="flex gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="editWord(${word.originalIndex})" class="text-slate-400 hover:text-purple-700 hover:bg-purple-50 p-1.5 rounded-full transition-colors" title="Edit">
+                                <i data-lucide="edit-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                            </button>
+                            <button onclick="deleteWord(${word.originalIndex})" class="text-slate-400 hover:text-red-500 hover:bg-red-50 p-1.5 rounded-full transition-colors" title="Delete">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex-1 flex flex-col justify-center mb-2 sm:mb-3">
+                        <span class="text-indigo-950 font-black text-2xl sm:text-3xl jp-text leading-tight break-words">${word.word}</span>
+                        ${word.romaji ? `<span class="text-slate-500 text-[10px] sm:text-xs font-mono font-semibold mt-1">${word.romaji}</span>` : ''}
+                    </div>
+                    <div class="relative z-10 pt-2 sm:pt-3 border-t border-slate-100 flex justify-between items-end gap-2">
+                        <span class="text-indigo-950 text-xs sm:text-sm font-bold truncate flex-1 block" title="${word.meaning}">${word.meaning}</span>
+                        <div class="flex flex-col items-end gap-1 shrink-0">
+                            <span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full uppercase tracking-widest font-bold">${word.type || 'custom'}</span>
+                            ${word.collection ? `<span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 border border-slate-200 text-slate-500 rounded-full uppercase tracking-widest font-bold truncate max-w-[80px]" title="${word.collection}">${word.collection}</span>` : ''}
+                        </div>
+                    </div>
+                    <style>
+                        input:checked + div { background-color: #c4b5fd; border-color: #c4b5fd; }
+                        input:checked + div svg { opacity: 1; transform: scale(1); }
+                    </style>
+                `;
+                listContainer.appendChild(div);
+            });
+            lucide.createIcons();
+            handleDBSelect(); 
+        }
+
+        function editWord(index) {
+            dbEditingIndex = index;
+            const vocab = getLocalVocab();
+            const word = vocab[index];
+            
+            document.getElementById('new-word-jp').value = word.word;
+            document.getElementById('new-word-romaji').value = word.romaji || '';
+            document.getElementById('new-word-en').value = word.meaning;
+            document.getElementById('new-word-collection').value = word.collection || '';
+            
+            const typeSelect = document.getElementById('new-word-type');
+            if(['noun', 'verb', 'adjective'].includes(word.type)) {
+                typeSelect.value = word.type;
+                cancelCustomTag();
+            } else {
+                typeSelect.value = 'custom_trigger';
+                const customContainer = document.getElementById('custom-tag-container');
+                customContainer.classList.remove('hidden');
+                customContainer.classList.add('flex');
+                document.getElementById('new-word-custom-type').value = word.type || 'custom';
+            }
+            
+            document.getElementById('form-title').innerHTML = '<i data-lucide="edit-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i> Edit Entry';
+            document.getElementById('add-word-btn').innerHTML = '<i data-lucide="save" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Update Entry';
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+            lucide.createIcons();
+
+            if (window.innerWidth < 768) {
+                openMobileAddForm();
+            }
+        }
+
+        function cancelEdit() {
+            dbEditingIndex = -1;
+            document.getElementById('new-word-jp').value = '';
+            document.getElementById('new-word-romaji').value = '';
+            document.getElementById('new-word-en').value = '';
+            document.getElementById('new-word-collection').value = '';
+            cancelCustomTag();
+            
+            document.getElementById('form-title').innerHTML = '<i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i> Register Entry';
+            document.getElementById('add-word-btn').innerHTML = '<i data-lucide="plus" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Add to Database';
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+            lucide.createIcons();
+
+            if (window.innerWidth < 768) {
+                closeMobileAddForm();
+            }
+        }
+
+        function addNewWord() {
+            const jp = document.getElementById('new-word-jp').value.trim();
+            const en = document.getElementById('new-word-en').value.trim();
+            const romaji = document.getElementById('new-word-romaji').value.trim();
+            const col = document.getElementById('new-word-collection').value.trim();
+            let type = document.getElementById('new-word-type').value;
+            const err = document.getElementById('add-error');
+            
+            if (type === 'custom_trigger') {
+                type = document.getElementById('new-word-custom-type').value.trim();
+                if (!type) type = 'custom'; 
+            }
+            
+            if (!jp || !en) {
+                err.classList.remove('hidden');
+                setTimeout(() => err.classList.add('hidden'), 3000);
+                return;
+            }
+            err.classList.add('hidden');
+            
+            const vocab = getLocalVocab();
+            const newEntry = { word: jp, meaning: en, romaji: romaji, type: type, collection: col };
+            
+            if (dbEditingIndex >= 0) {
+                vocab[dbEditingIndex] = newEntry;
+            } else {
+                vocab.push(newEntry);
+            }
+            
+            localStorage.setItem('n5VocabList', JSON.stringify(vocab));
+            updateCollectionFilterOptions();
+            cancelEdit(); 
+            renderVocabManagerList();
+
+            if (window.innerWidth < 768) {
+                closeMobileAddForm();
+            }
+        }
+
+        function deleteWord(index) {
+            const vocab = getLocalVocab();
+            vocab.splice(index, 1);
+            localStorage.setItem('n5VocabList', JSON.stringify(vocab));
+            updateCollectionFilterOptions();
+            renderVocabManagerList();
+        }
+
+        function openManageCollections() {
+            document.getElementById('manage-collections-modal').classList.remove('hidden');
+            renderCollectionsEditList();
+        }
+
+        function closeManageCollections() {
+            document.getElementById('manage-collections-modal').classList.add('hidden');
+        }
+
+        function renderCollectionsEditList() {
+            const list = document.getElementById('collections-edit-list');
+            list.innerHTML = '';
+            const vocab = getLocalVocab();
+            const collections = [...new Set(vocab.map(w => w.collection).filter(c => c && c.trim() !== ''))];
+            
+            if (collections.length === 0) {
+                list.innerHTML = '<p class="text-xs sm:text-sm text-slate-400 font-bold text-center py-4">No collections found.</p>';
+                return;
+            }
+
+            collections.forEach(col => {
+                const count = vocab.filter(w => w.collection === col).length;
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-2 sm:gap-3 bg-white p-2 sm:p-3 rounded-2xl shadow-sm border border-slate-100 hover:border-purple-200 transition-colors';
+                div.innerHTML = `
+                    <div class="flex-1 flex flex-col">
+                        <input type="text" value="${col}" class="bg-transparent border-b-2 border-transparent hover:border-slate-200 focus:border-purple-300 focus:outline-none transition-colors px-1 py-1 text-xs sm:text-sm font-black text-indigo-950 w-full" data-old-name="${col}">
+                        <span class="text-[9px] sm:text-[10px] text-slate-400 font-bold px-1">${count} words attached</span>
+                    </div>
+                    <button onclick="renameCollection(this)" class="text-[9px] sm:text-[11px] uppercase tracking-wider font-bold bg-purple-100 hover:bg-purple-200 text-purple-700 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full transition-colors">Rename</button>
+                    <button onclick="deleteCollection('${col}')" class="text-xs bg-transparent border-2 border-red-200 hover:bg-red-50 text-red-500 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full transition-colors" title="Unlink all words from this collection"><i data-lucide="unlink-2" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i></button>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+
+        function renameCollection(btn) {
+            const input = btn.previousElementSibling.querySelector('input');
+            const oldName = input.getAttribute('data-old-name');
+            const newName = input.value.trim();
+            
+            if(!newName || oldName === newName) return;
+
+            const vocab = getLocalVocab();
+            vocab.forEach(w => {
+                if (w.collection === oldName) w.collection = newName;
+            });
+            
+            localStorage.setItem('n5VocabList', JSON.stringify(vocab));
+            
+            renderCollectionsEditList();
+            updateCollectionFilterOptions();
+            renderVocabManagerList();
+            updateHomeCollections();
+            
+            btn.textContent = 'Saved!';
+            btn.classList.add('bg-green-200', 'text-green-800');
+            setTimeout(() => {
+                btn.textContent = 'Rename';
+                btn.classList.remove('bg-green-200', 'text-green-800');
+            }, 1000);
+        }
+
+        function deleteCollection(colName) {
+            const vocab = getLocalVocab();
+            vocab.forEach(w => {
+                if (w.collection === colName) w.collection = '';
+            });
+            
+            localStorage.setItem('n5VocabList', JSON.stringify(vocab));
+            
+            renderCollectionsEditList();
+            updateCollectionFilterOptions();
+            renderVocabManagerList();
+            updateHomeCollections();
+        }
+
+        function handleDBSelect() {
+            const selected = document.querySelectorAll('.db-word-select:checked');
+            const bulkBar = document.getElementById('bulk-action-bar');
+            const countSpan = document.getElementById('bulk-count');
+            
+            if (selected.length > 0) {
+                bulkBar.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+                bulkBar.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                countSpan.textContent = selected.length;
+            } else {
+                bulkBar.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+                bulkBar.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+            }
+        }
+
+        function applyBulkCollection() {
+            const colName = document.getElementById('bulk-collection-input').value.trim();
+            if(!colName) return;
+            
+            const selected = document.querySelectorAll('.db-word-select:checked');
+            const vocab = getLocalVocab();
+            
+            selected.forEach(cb => {
+                const idx = parseInt(cb.value);
+                vocab[idx].collection = colName;
+            });
+            
+            localStorage.setItem('n5VocabList', JSON.stringify(vocab));
+            document.getElementById('bulk-collection-input').value = '';
+            updateCollectionFilterOptions();
+            renderVocabManagerList();
+        }
+
+        function deleteBulkWords() {
+            const selected = Array.from(document.querySelectorAll('.db-word-select:checked')).map(cb => parseInt(cb.value));
+            const vocab = getLocalVocab();
+            
+            selected.sort((a,b) => b - a).forEach(idx => {
+                vocab.splice(idx, 1);
+            });
+            
+            localStorage.setItem('n5VocabList', JSON.stringify(vocab));
+            updateCollectionFilterOptions();
+            renderVocabManagerList();
+        }
+
+        function openCustomSelectionScreen() {
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('custom-selection-screen').classList.remove('hidden');
+            
+            const listContainer = document.getElementById('custom-selection-list');
+            listContainer.innerHTML = '';
+            
+            const vocab = getLocalVocab();
+            if (vocab.length === 0) {
+                listContainer.innerHTML = '<p class="text-slate-400 text-center mt-10 font-bold text-xs sm:text-sm">No words in database.</p>';
+                return;
+            }
+            
+            vocab.forEach((word, index) => {
+                const div = document.createElement('div');
+                div.className = 'w-full';
+                div.innerHTML = `
+                    <label class="sakura-checkbox flex items-center p-3 sm:p-4 bg-white border border-slate-100 hover:border-purple-200 cursor-pointer transition-colors group rounded-2xl shadow-sm">
+                        <input type="checkbox" value="${index}" class="custom-word-checkbox hidden" checked>
+                        <div class="w-4 h-4 sm:w-5 sm:h-5 border-2 border-slate-200 bg-white mr-3 sm:mr-4 flex items-center justify-center transition-all shadow-inner rounded-full shrink-0">
+                            <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white opacity-0 transform scale-50 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div class="flex-1 flex justify-between items-center gap-2">
+                            <div class="flex items-center gap-2 sm:gap-4 flex-1">
+                                <span class="text-indigo-950 font-black text-xl sm:text-2xl jp-text min-w-[60px] sm:min-w-[80px] break-words">${word.word}</span>
+                                <div class="flex flex-col">
+                                    <span class="text-indigo-950 font-bold text-xs sm:text-sm line-clamp-2">${word.meaning}</span>
+                                    ${word.romaji ? `<span class="text-slate-500 text-[9px] sm:text-[10px] font-mono">${word.romaji}</span>` : ''}
+                                </div>
+                            </div>
+                            <span class="text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 sm:py-1 bg-purple-100 text-purple-700 uppercase tracking-wider font-bold rounded-full border border-transparent group-hover:border-purple-300 transition-all shrink-0">${word.type || 'Custom'}</span>
+                        </div>
+                    </label>
+                `;
+                listContainer.appendChild(div);
+            });
+        }
+
+        function toggleAllCustom(selectAll) {
+            const checkboxes = document.querySelectorAll('.custom-word-checkbox');
+            checkboxes.forEach(cb => cb.checked = selectAll);
+        }
+
+        function startSelectedCustomDrill() {
+            const checkboxes = document.querySelectorAll('.custom-word-checkbox');
+            const vocab = getLocalVocab();
+            const selectedWords = [];
+            
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    selectedWords.push(vocab[parseInt(cb.value)]);
+                }
+            });
+            
+            if (selectedWords.length === 0) {
+                const listContainer = document.getElementById('custom-selection-list');
+                let err = document.getElementById('custom-err');
+                if(!err) {
+                    err = document.createElement('div');
+                    err.id = 'custom-err';
+                    err.className = 'text-amber-800 bg-amber-100 border-l-4 border-amber-300 text-center mb-3 sm:mb-4 p-2.5 sm:p-3 font-bold text-xs sm:text-sm rounded-2xl shadow-sm';
+                    err.textContent = 'Required: Select at least one word to proceed.';
+                    listContainer.prepend(err);
+                }
+                return;
+            }
+            
+            currentWordsList = selectedWords;
+            document.getElementById('custom-selection-screen').classList.add('hidden');
+            launchGameWithCurrentList();
+        }
+
+        function startDrill() {
+            masterWordsList = getLocalVocab();
+            
+            if (currentCategory === 'custom') {
+                openCustomSelectionScreen();
+                return; 
+            }
+            
+            if (currentCategory === 'collection') {
+                currentWordsList = masterWordsList.filter(w => w.collection === currentCollectionName);
+            } else if (currentCategory === 'all') {
+                currentWordsList = [...masterWordsList];
+            } else {
+                currentWordsList = masterWordsList.filter(w => (w.type || '').toLowerCase().includes(currentCategory));
+            }
+
+            if (currentWordsList.length === 0) {
+                currentWordsList = [...masterWordsList]; 
+            }
+
+            launchGameWithCurrentList();
+        }
+
+        function fillShuffleBag() {
+            shuffleBag = [...currentWordsList];
+            for (let i = shuffleBag.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffleBag[i], shuffleBag[j]] = [shuffleBag[j], shuffleBag[i]];
+            }
+        }
+
+        function launchGameWithCurrentList() {
+            score = 0;
+            totalAttempts = 0;
+            incorrectWords = [];
+            gameActive = true;
+            shuffleBag = [];
+            
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('game-over-screen').classList.add('hidden');
+            
+            const gameScreen = document.getElementById('game-screen');
+            gameScreen.classList.remove('hidden');
+
+            document.getElementById('flashcard').classList.remove('sakura-error-flash');
+            
+            const modeText = currentMode === 'sprint' ? `Sprint (${sprintDuration}s)` : 'Zen';
+            let listText = 'List';
+            if (currentCategory === 'custom') listText = 'Ad-Hoc Selection';
+            else if (currentCategory === 'collection') listText = currentCollectionName;
+            else {
+                const listCat = document.querySelector('.cat-btn.active-cat');
+                if (listCat) listText = listCat.textContent.trim();
+            }
+            
+            document.getElementById('hud-mode').textContent = `Mode: ${modeText}`;
+            document.getElementById('hud-list').textContent = `List: ${listText}`;
+            
+            const timerDisplay = document.getElementById('timer-display');
+            
+            if (currentMode === 'sprint') {
+                timeLeft = sprintDuration;
+                timerDisplay.classList.remove('hidden', 'opacity-0'); 
+                document.getElementById('time-left-val').textContent = `${timeLeft}s`;
+                
+                clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    document.getElementById('time-left-val').textContent = `${timeLeft}s`;
+                    if (timeLeft <= 0) endGame();
+                }, 1000);
+            } else {
+                timerDisplay.classList.add('opacity-0');
+                clearInterval(timerInterval);
+            }
+            
+            updateScoreUI();
+            nextWord();
+            setTimeout(() => {
+                const input = document.getElementById('answer-input');
+                input.value = '';
+                
+                if (currentAnswerFormat === 'meaning') {
+                    input.placeholder = "Type English meaning...";
+                } else if (currentAnswerFormat === 'romaji') {
+                    input.placeholder = "Type romaji...";
+                } else {
+                    input.placeholder = "Type meaning or romaji...";
+                }
+                
+                input.focus();
+            }, 100);
+        }
+
+        function nextWord() {
+            if (shuffleBag.length === 0) {
+                fillShuffleBag();
+                if (shuffleBag.length > 1 && currentWord && shuffleBag[0].word === currentWord.word) {
+                    [shuffleBag[0], shuffleBag[1]] = [shuffleBag[1], shuffleBag[0]];
+                }
+            }
+            currentWord = shuffleBag.shift();
+            document.getElementById('japanese-word').textContent = currentWord.word;
+        }
+
+        function checkAnswer() {
+            if (!gameActive) return;
+            const inputEl = document.getElementById('answer-input');
+            const rawValue = inputEl.value;
+            const answer = rawValue.toLowerCase().trim().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"");
+            if (!answer) return;
+
+            let acceptableAnswers = [];
+            
+            if (currentAnswerFormat === 'both' || currentAnswerFormat === 'meaning') {
+                const meanings = (currentWord.meaning || '').split(',').map(m => m.trim().toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,""));
+                meanings.forEach(m => {
+                    if (m) {
+                        acceptableAnswers.push(m);
+                        if (m.startsWith('to ')) acceptableAnswers.push(m.replace('to ', '').trim());
+                    }
+                });
+            }
+            
+            if (currentAnswerFormat === 'both' || currentAnswerFormat === 'romaji') {
+                const romajis = (currentWord.romaji || '').split(',').map(r => r.trim().toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,""));
+                romajis.forEach(r => {
+                    if (r) acceptableAnswers.push(r);
+                });
+            }
+
+            totalAttempts++;
+
+            if (acceptableAnswers.includes(answer)) {
+                score++;
+                updateScoreUI();
+                
+                if(window.triggerSakuraBloom) {
+                    window.triggerSakuraBloom('flashcard');
+                }
+                
+                inputEl.value = '';
+                nextWord();
+            } else {
+                handleIncorrectAnswer();
+            }
+        }
+
+        function handleSkip() {
+            if (!gameActive) return;
+            totalAttempts++;
+            handleIncorrectAnswer();
+        }
+
+        function handleIncorrectAnswer() {
+            if (!incorrectWords.some(w => w.word === currentWord.word)) {
+                incorrectWords.push(currentWord);
+            }
+
+            if (shuffleBag.length > 0) {
+                const insertIndex = Math.max(1, Math.floor(Math.random() * Math.min(4, shuffleBag.length)));
+                shuffleBag.splice(insertIndex, 0, currentWord);
+            } else {
+                shuffleBag.push(currentWord);
+            }
+
+            if(window.triggerSakuraShake) {
+                window.triggerSakuraShake('flashcard');
+            }
+            
+            gameActive = false;
+            const inputEl = document.getElementById('answer-input');
+            const revealContainer = document.getElementById('correct-answer-reveal');
+            
+            inputEl.value = '';
+            inputEl.disabled = true;
+            inputEl.classList.add('opacity-40');
+            
+            document.getElementById('reveal-meaning').textContent = currentWord.meaning;
+            document.getElementById('reveal-romaji').textContent = currentWord.romaji ? currentWord.romaji : '---';
+            revealContainer.classList.remove('opacity-0');
+
+            setTimeout(() => {
+                revealContainer.classList.add('opacity-0');
+                inputEl.disabled = false;
+                inputEl.classList.remove('opacity-40');
+                inputEl.focus();
+                gameActive = true;
+                nextWord();
+            }, 1800);
+        }
+
+        function updateScoreUI() {
+            document.getElementById('score-display').textContent = score;
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearInterval(timerInterval);
+            document.getElementById('game-screen').classList.add('hidden');
+            
+            const gameOverScreen = document.getElementById('game-over-screen');
+            gameOverScreen.classList.remove('hidden');
+            
+            document.getElementById('final-score').textContent = score;
+            
+            let accuracy = 0;
+            if (totalAttempts > 0) {
+                accuracy = Math.round((score / totalAttempts) * 100);
+            }
+            document.getElementById('accuracy-display').textContent = `${accuracy}%`;
+
+            const reviewSection = document.getElementById('review-section');
+            const reviewList = document.getElementById('review-list');
+            
+            if (incorrectWords.length > 0) {
+                reviewSection.classList.remove('hidden');
+                reviewList.innerHTML = incorrectWords.map(w => 
+                    `<div class="flex justify-between items-center bg-slate-50 border border-slate-100 p-3 sm:p-4 rounded-2xl mb-2">
+                        <div class="flex items-center gap-3 sm:gap-4 flex-1">
+                            <span class="font-black text-indigo-950 text-lg sm:text-xl jp-text w-16 sm:w-20 break-words">${w.word}</span>
+                            <div class="flex flex-col">
+                                <span class="text-indigo-950 font-bold text-xs sm:text-sm line-clamp-2">${w.meaning}</span>
+                                ${w.romaji ? `<span class="text-slate-500 text-[9px] sm:text-[10px] font-mono">${w.romaji}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>`
+                ).join('');
+            } else {
+                reviewSection.classList.add('hidden');
+            }
+        }
+
+        document.getElementById('answer-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                checkAnswer();
+            }
+            if (e.key === '?') {
+                e.preventDefault();
+                handleSkip();
+            }
+        });
+
+        init();
+    </script>
+</body>
+</html>
