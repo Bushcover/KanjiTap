@@ -319,7 +319,7 @@
         </div>
 
         <!-- CUSTOM AD-HOC SELECTION SCREEN -->
-        <div id="custom-selection-screen" class="hidden w-full sakura-card-surface flex flex-col h-[90dvh] sm:h-[85dvh] sm:max-h-[800px] overflow-hidden">
+        <div id="custom-selection-screen" class="hidden w-full sakura-card-surface flex flex-col h-[90vh] sm:h-[85vh] sm:max-h-[800px] overflow-hidden">
             <div class="p-4 sm:p-6 border-b border-slate-100 shrink-0 text-center relative bg-white">
                 <h2 class="text-xl sm:text-2xl font-black text-indigo-950 mb-1">Build Custom Drill</h2>
                 <p class="text-slate-500 text-[10px] sm:text-xs font-medium">Select specific vocabulary to include for this session.</p>
@@ -488,7 +488,7 @@
             </div>
             
             <div id="manage-collections-modal" class="hidden absolute inset-0 z-[60] bg-white/90 flex items-center justify-center p-4">
-                <div class="bg-white w-full max-w-[95%] sm:max-w-md rounded-[1.5rem] shadow-[0_20px_40px_-15px_rgba(107,114,128,0.25)] overflow-hidden flex flex-col max-h-[80dvh] border border-slate-100">
+                <div class="bg-white w-full max-w-[95%] sm:max-w-md rounded-[1.5rem] shadow-[0_20px_40px_-15px_rgba(107,114,128,0.25)] overflow-hidden flex flex-col max-h-[80vh] border border-slate-100">
                     <div class="p-4 sm:p-5 bg-purple-50 flex justify-between items-center shrink-0 border-b border-slate-100">
                         <div class="flex items-center gap-2">
                             <i data-lucide="folders" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-700"></i>
@@ -1003,6 +1003,11 @@
                 bulkBar.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
                 bulkBar.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
             }
+        }
+
+        function toggleAllDB(checked) {
+            document.querySelectorAll('.db-word-select').forEach(cb => cb.checked = checked);
+            handleDBSelect();
         }
 
         function applyBulkCollection() {
