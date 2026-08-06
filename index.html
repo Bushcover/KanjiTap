@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-motif="aizome">
+<html lang="en" data-motif="sakura">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 KanjiTap</title>
+    <title>✨ KanjiTap</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23FDFBF7'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23FDFBF7'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23FDFBF7'/%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.5' cy='0.85' r='0.7'%3E%3Cstop offset='0' stop-color='%23f3e8ff'/%3E%3Cstop offset='1' stop-color='%23c4b5fd'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg transform='translate(50,50)'%3E%3Cg id='p'%3E%3Cpath d='M 0,0 C -9,-9 -10,-21 -3,-28 Q 0,-30.5 0,-26.5 Q 0,-30.5 3,-28 C 10,-21 9,-9 0,0 Z' fill='url(%23g)' stroke='%23a855f7' stroke-width='0.6' stroke-opacity='0.35'/%3E%3C/g%3E%3Cuse href='%23p' transform='rotate(0)'/%3E%3Cuse href='%23p' transform='rotate(72)'/%3E%3Cuse href='%23p' transform='rotate(144)'/%3E%3Cuse href='%23p' transform='rotate(216)'/%3E%3Cuse href='%23p' transform='rotate(288)'/%3E%3Ccircle r='4.5' fill='%237e22ce'/%3E%3Ccircle r='2.2' fill='%23c4b5fd'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#7e22ce">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
@@ -24,7 +26,7 @@
         
         .jp-text, #japanese-word { font-family: var(--font-jp); }
 
-        .aizome-card-surface {
+        .sakura-card-surface {
             background-color: #ffffff;
             color: #1e1b4b;
             border: none;
@@ -32,7 +34,7 @@
             box-shadow: 0 20px 40px -15px rgba(107,114,128,0.12);
         }
 
-        .aizome-hover-reveal {
+        .sakura-hover-reveal {
             position: relative;
             overflow: hidden;
             background-color: #f3e8ff;
@@ -42,25 +44,25 @@
             transition: transform 0.2s ease, background-color 0.2s ease;
             z-index: 1;
         }
-        .aizome-hover-reveal:hover {
+        .sakura-hover-reveal:hover {
             background-color: #e9d5ff;
             transform: translateY(-4px);
         }
         
-        .aizome-btn-secondary {
+        .sakura-btn-secondary {
             background-color: transparent;
             color: #64748b;
             border: 2px solid #e2e8f0;
             border-radius: 9999px;
             transition: all 0.2s ease;
         }
-        .aizome-btn-secondary:hover {
+        .sakura-btn-secondary:hover {
             background-color: #faf5ff;
             border-color: #ddd6fe;
             color: #7e22ce;
         }
         
-        .aizome-input {
+        .sakura-input {
             background-color: #f8fafc;
             border: none;
             color: #1e1b4b;
@@ -68,25 +70,25 @@
             box-shadow: inset 0 2px 5px rgba(100,116,139,0.12);
             transition: all 0.2s ease;
         }
-        .aizome-input:focus {
+        .sakura-input:focus {
             outline: none;
             background-color: #ffffff;
             box-shadow: inset 0 2px 5px rgba(100,116,139,0.08), 0 0 0 4px #f3e8ff;
         }
 
-        .aizome-checkbox input:checked + div {
+        .sakura-checkbox input:checked + div {
             background-color: #c4b5fd;
             border-color: #c4b5fd;
         }
-        .aizome-checkbox input:checked + div svg {
+        .sakura-checkbox input:checked + div svg {
             opacity: 1;
             transform: scale(1);
         }
         
-        .aizome-scrollbar::-webkit-scrollbar { width: 8px; }
-        .aizome-scrollbar::-webkit-scrollbar-track { background: #f8fafc; border-radius: 4px; }
-        .aizome-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
-        .aizome-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+        .sakura-scrollbar::-webkit-scrollbar { width: 8px; }
+        .sakura-scrollbar::-webkit-scrollbar-track { background: #f8fafc; border-radius: 4px; }
+        .sakura-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+        .sakura-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
 
         @keyframes dyeBloomAnim {
             0% { transform: scale(0); opacity: 0.8; }
@@ -103,17 +105,17 @@
             z-index: 0;
         }
         
-        @keyframes aizomeShake {
+        @keyframes sakuraShake {
             0%, 100% { transform: translateX(0); }
             20%, 60% { transform: translateX(-8px); }
             40%, 80% { transform: translateX(8px); }
         }
-        @keyframes aizomeErrorColor {
+        @keyframes sakuraErrorColor {
             0%, 100% { background-color: #ffffff; color: #1e1b4b; }
             50% { background-color: #fef3c7; color: #92400e; }
         }
-        .aizome-error-flash {
-            animation: aizomeShake 0.4s cubic-bezier(.36,.07,.19,.97) both, aizomeErrorColor 0.4s ease-in-out both;
+        .sakura-error-flash {
+            animation: sakuraShake 0.4s cubic-bezier(.36,.07,.19,.97) both, sakuraErrorColor 0.4s ease-in-out both;
         }
 
         .sprint-opt {
@@ -133,13 +135,15 @@
 
         *:focus, *:focus-visible { outline: none !important; }
         ::selection { background-color: #e9d5ff !important; color: #1e1b4b !important; }
+
+        button { touch-action: manipulation; }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-6 selection:bg-purple-200 selection:text-indigo-950">
+<body class="min-h-[100dvh] flex items-center justify-center p-2 sm:p-4 md:p-6 selection:bg-purple-200 selection:text-indigo-950">
 
     <div id="app-container" class="w-full max-w-md relative transition-all duration-500 ease-in-out">
         
-        <div id="home-screen" class="aizome-card-surface p-5 sm:p-8 w-full">
+        <div id="home-screen" class="sakura-card-surface p-5 sm:p-8 w-full">
             
             <div class="text-center mb-6 sm:mb-10 border-b border-slate-100 pb-6 sm:pb-8 relative">
                 <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full text-3xl sm:text-4xl mb-4 sm:mb-5 bg-purple-50 shadow-[0_10px_25px_-8px_rgba(168,85,247,0.35)] relative z-10 transition-transform duration-300 hover:-translate-y-1">
@@ -158,7 +162,7 @@
                 </div>
                 <div class="grid grid-cols-2 gap-2 sm:gap-3">
                     <div class="flex flex-col gap-2">
-                        <button onclick="selectMode('sprint', this)" class="mode-btn aizome-hover-reveal w-full py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm active-mode">
+                        <button onclick="selectMode('sprint', this)" class="mode-btn sakura-hover-reveal w-full py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm active-mode">
                             <i data-lucide="timer" class="w-4 h-4 mx-auto mb-1 opacity-80"></i> Sprint
                         </button>
                         <div id="sprint-time-options" class="flex gap-1 h-8">
@@ -169,7 +173,7 @@
                     </div>
                     
                     <div class="flex flex-col gap-2">
-                        <button onclick="selectMode('zen', this)" class="mode-btn aizome-btn-secondary w-full py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm h-[64px] sm:h-[72px]">
+                        <button onclick="selectMode('zen', this)" class="mode-btn sakura-btn-secondary w-full py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm h-[64px] sm:h-[72px]">
                             <i data-lucide="infinity" class="w-4 h-4 mx-auto mb-1 opacity-80"></i> Zen (Practice)
                         </button>
                         <div id="zen-placeholder" class="h-8 flex items-center justify-center text-[9px] text-slate-400 font-mono uppercase tracking-widest hidden">Endless</div>
@@ -181,11 +185,11 @@
             <div class="mb-5 sm:mb-6">
                 <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-2 sm:mb-3">Vocabulary List</h3>
                 <div class="flex flex-wrap gap-2">
-                    <button data-cat="all" onclick="selectCategory('all', this)" class="cat-btn aizome-hover-reveal flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs active-cat">All Words</button>
-                    <button data-cat="noun" onclick="selectCategory('noun', this)" class="cat-btn aizome-btn-secondary flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Nouns</button>
-                    <button data-cat="verb" onclick="selectCategory('verb', this)" class="cat-btn aizome-btn-secondary flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Verbs</button>
-                    <button data-cat="adjective" onclick="selectCategory('adjective', this)" class="cat-btn aizome-btn-secondary flex-[1_1_45%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Adjectives</button>
-                    <button data-cat="custom" onclick="selectCategory('custom', this)" class="cat-btn aizome-btn-secondary flex-[1_1_45%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs flex items-center justify-center gap-1.5">
+                    <button data-cat="all" onclick="selectCategory('all', this)" class="cat-btn sakura-hover-reveal flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs active-cat">All Words</button>
+                    <button data-cat="noun" onclick="selectCategory('noun', this)" class="cat-btn sakura-btn-secondary flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Nouns</button>
+                    <button data-cat="verb" onclick="selectCategory('verb', this)" class="cat-btn sakura-btn-secondary flex-[1_1_30%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Verbs</button>
+                    <button data-cat="adjective" onclick="selectCategory('adjective', this)" class="cat-btn sakura-btn-secondary flex-[1_1_45%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">Adjectives</button>
+                    <button data-cat="custom" onclick="selectCategory('custom', this)" class="cat-btn sakura-btn-secondary flex-[1_1_45%] py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs flex items-center justify-center gap-1.5">
                         <i data-lucide="list-checks" class="w-3.5 h-3.5"></i> Custom List...
                     </button>
                 </div>
@@ -209,7 +213,7 @@
                 </div>
             </div>
 
-            <button onclick="startDrill()" class="aizome-hover-reveal w-full py-3.5 sm:py-4 font-bold text-base sm:text-lg tracking-wide shadow-lg flex justify-center items-center gap-2 group">
+            <button onclick="startDrill()" class="sakura-hover-reveal w-full py-3.5 sm:py-4 font-bold text-base sm:text-lg tracking-wide shadow-lg flex justify-center items-center gap-2 group">
                 Begin Session <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"></i>
             </button>
 
@@ -229,7 +233,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-between items-center mb-3 sm:mb-5 aizome-card-surface p-2.5 sm:p-3 px-4 sm:px-5">
+            <div class="flex justify-between items-center mb-3 sm:mb-5 sakura-card-surface p-2.5 sm:p-3 px-4 sm:px-5">
                 <div class="flex-1 flex justify-start">
                     <div id="timer-display" class="text-lg sm:text-xl font-black text-indigo-950 flex items-center gap-1.5 sm:gap-2">
                         <i data-lucide="clock" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-400"></i>
@@ -249,7 +253,7 @@
                 </div>
             </div>
 
-            <div id="flashcard" class="w-full aizome-card-surface p-6 sm:p-10 flex flex-col items-center justify-center min-h-[220px] aspect-auto sm:aspect-[4/3] sm:min-h-0 mb-4 sm:mb-5 relative overflow-hidden group">
+            <div id="flashcard" class="w-full sakura-card-surface p-6 sm:p-10 flex flex-col items-center justify-center min-h-[220px] aspect-auto sm:aspect-[4/3] sm:min-h-0 mb-4 sm:mb-5 relative overflow-hidden group">
                 <div class="card-content-layer w-full h-full flex flex-col items-center justify-center transition-transform duration-200 z-10" id="card-inner">
                     <h2 id="japanese-word" class="jp-text text-5xl sm:text-7xl leading-none font-black text-indigo-950 mb-6 sm:mb-8 text-center break-words px-2">---</h2>
                     
@@ -261,14 +265,14 @@
             </div>
 
             <div class="flex flex-col gap-2.5 sm:gap-3">
-                <div class="relative aizome-card-surface p-1.5 sm:p-2 shadow-sm">
-                    <input type="text" id="answer-input" autocomplete="off" placeholder="Type meaning or romaji..." class="aizome-input w-full px-3 sm:px-4 py-3.5 sm:py-5 text-lg sm:text-xl font-bold text-center focus:ring-4 focus:ring-purple-100 focus:outline-none">
+                <div class="relative sakura-card-surface p-1.5 sm:p-2 shadow-sm">
+                    <input type="text" id="answer-input" autocomplete="off" placeholder="Type meaning or romaji..." class="sakura-input w-full px-3 sm:px-4 py-3.5 sm:py-5 text-lg sm:text-xl font-bold text-center focus:ring-4 focus:ring-purple-100 focus:outline-none">
                 </div>
                 <div class="flex gap-2">
-                    <button id="skip-btn" onclick="handleSkip()" class="flex-[1] aizome-btn-secondary py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm flex flex-col items-center justify-center bg-white/50">
+                    <button id="skip-btn" onclick="handleSkip()" class="flex-[1] sakura-btn-secondary py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm flex flex-col items-center justify-center bg-white/50">
                         Skip <span class="text-[8px] sm:text-[9px] text-slate-400 mt-0.5 sm:mt-1 uppercase tracking-widest font-mono">Press ?</span>
                     </button>
-                    <button id="submit-btn" onclick="checkAnswer()" class="flex-[2] aizome-hover-reveal py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm flex flex-col items-center justify-center shadow-md">
+                    <button id="submit-btn" onclick="checkAnswer()" class="flex-[2] sakura-hover-reveal py-2.5 sm:py-3.5 font-bold text-xs sm:text-sm flex flex-col items-center justify-center shadow-md">
                         Submit <span class="text-[8px] sm:text-[9px] text-purple-700/70 mt-0.5 sm:mt-1 uppercase tracking-widest font-mono">Press Enter</span>
                     </button>
                 </div>
@@ -276,7 +280,7 @@
         </div>
 
         <!-- GAME OVER SCREEN -->
-        <div id="game-over-screen" class="hidden w-full aizome-card-surface p-5 sm:p-8 relative overflow-hidden">
+        <div id="game-over-screen" class="hidden w-full sakura-card-surface p-5 sm:p-8 relative overflow-hidden">
             <div class="text-center mb-6 sm:mb-8 border-b border-slate-100 pb-6 sm:pb-8 relative z-10">
                 <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full text-2xl sm:text-3xl mb-3 sm:mb-4 bg-purple-50">
                     🎉
@@ -301,21 +305,21 @@
                     <i data-lucide="book-open-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i>
                     <h3 class="text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-indigo-950 font-bold">Needs Review</h3>
                 </div>
-                <div id="review-list" class="max-h-48 sm:max-h-56 overflow-y-auto space-y-2 pr-2 aizome-scrollbar">
+                <div id="review-list" class="max-h-48 sm:max-h-56 overflow-y-auto space-y-2 pr-2 sakura-scrollbar">
                     <!-- Populated by JS -->
                 </div>
             </div>
 
             <div class="flex gap-2 sm:gap-3 relative z-10">
-                <button onclick="goHome()" class="flex-[1] py-2.5 sm:py-3.5 aizome-btn-secondary font-bold text-xs sm:text-sm bg-white/50">Menu</button>
-                <button onclick="startDrill()" class="flex-[2] py-2.5 sm:py-3.5 aizome-hover-reveal font-bold text-xs sm:text-sm shadow-md flex justify-center items-center gap-2">
+                <button onclick="goHome()" class="flex-[1] py-2.5 sm:py-3.5 sakura-btn-secondary font-bold text-xs sm:text-sm bg-white/50">Menu</button>
+                <button onclick="startDrill()" class="flex-[2] py-2.5 sm:py-3.5 sakura-hover-reveal font-bold text-xs sm:text-sm shadow-md flex justify-center items-center gap-2">
                     <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Drill Again
                 </button>
             </div>
         </div>
 
         <!-- CUSTOM AD-HOC SELECTION SCREEN -->
-        <div id="custom-selection-screen" class="hidden w-full aizome-card-surface flex flex-col h-[90vh] sm:h-[85vh] sm:max-h-[800px] overflow-hidden">
+        <div id="custom-selection-screen" class="hidden w-full sakura-card-surface flex flex-col h-[90dvh] sm:h-[85dvh] sm:max-h-[800px] overflow-hidden">
             <div class="p-4 sm:p-6 border-b border-slate-100 shrink-0 text-center relative bg-white">
                 <h2 class="text-xl sm:text-2xl font-black text-indigo-950 mb-1">Build Custom Drill</h2>
                 <p class="text-slate-500 text-[10px] sm:text-xs font-medium">Select specific vocabulary to include for this session.</p>
@@ -329,13 +333,13 @@
                 </div>
             </div>
 
-            <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2 sm:space-y-3 aizome-scrollbar bg-white" id="custom-selection-list">
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2 sm:space-y-3 sakura-scrollbar bg-white" id="custom-selection-list">
                 <!-- Checkboxes populated by JS -->
             </div>
             
             <div class="flex gap-2 sm:gap-3 shrink-0 p-4 sm:p-5 border-t border-slate-100 bg-white">
-                <button onclick="goHome()" class="flex-[1] py-2.5 sm:py-3 aizome-btn-secondary font-bold text-xs sm:text-sm">Cancel</button>
-                <button onclick="startSelectedCustomDrill()" class="flex-[2] py-2.5 sm:py-3 aizome-hover-reveal font-bold text-xs sm:text-sm shadow-md">Start Drill</button>
+                <button onclick="goHome()" class="flex-[1] py-2.5 sm:py-3 sakura-btn-secondary font-bold text-xs sm:text-sm">Cancel</button>
+                <button onclick="startSelectedCustomDrill()" class="flex-[2] py-2.5 sm:py-3 sakura-hover-reveal font-bold text-xs sm:text-sm shadow-md">Start Drill</button>
             </div>
         </div>
     </div>
@@ -362,7 +366,7 @@
             <!-- Mobile Modal Wrapper / Desktop Left Pane Container -->
             <div id="mobile-form-modal" class="hidden md:flex fixed inset-0 z-[100] bg-white/90 p-4 items-center justify-center md:relative md:inset-auto md:z-auto md:bg-transparent md:p-0 md:items-stretch">
                 <!-- Inner Add / Edit Word Form -->
-                <div class="w-full max-w-md md:max-w-none md:w-80 lg:w-96 bg-white flex flex-col shrink-0 border border-slate-100 md:border-b-0 md:border-t-0 md:border-l-0 md:border-r shadow-[0_20px_40px_-15px_rgba(107,114,128,0.15)] rounded-[1.5rem] md:rounded-none md:rounded-l-[1.5rem] overflow-hidden h-fit max-h-[90vh] md:max-h-[calc(100vh-80px)] m-auto md:my-6 md:ml-6 md:mr-0 relative">
+                <div class="w-full max-w-md md:max-w-none md:w-80 lg:w-96 bg-white flex flex-col shrink-0 border border-slate-100 md:border-b-0 md:border-t-0 md:border-l-0 md:border-r shadow-[0_20px_40px_-15px_rgba(107,114,128,0.15)] rounded-[1.5rem] md:rounded-none md:rounded-l-[1.5rem] overflow-hidden h-fit max-h-[90dvh] md:max-h-[calc(100vh-80px)] m-auto md:my-6 md:ml-6 md:mr-0 relative">
                     <div class="p-4 sm:p-6 pb-3 sm:pb-4 border-b border-slate-100 bg-white flex justify-between items-center relative">
                         <h3 id="form-title" class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-indigo-950 font-black flex items-center gap-1.5 sm:gap-2">
                             <i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400"></i> Register Entry
@@ -372,7 +376,7 @@
                         </button>
                     </div>
                     
-                    <div class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-3 sm:space-y-4 aizome-scrollbar">
+                    <div class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-3 sm:space-y-4 sakura-scrollbar">
                         <div>
                             <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1 sm:mb-1.5 uppercase tracking-wider">Japanese (Kana/Kanji)</label>
                             <input type="text" id="new-word-jp" placeholder="e.g. ねこ" class="w-full px-4 sm:px-5 py-2.5 sm:py-3 jp-text font-bold text-base sm:text-lg bg-slate-50 text-indigo-950 placeholder:text-slate-400 border-none rounded-full outline-none focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all shadow-inner">
@@ -422,7 +426,7 @@
             </div>
             
             <!-- Right Pane: The Database List -->
-            <div class="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 md:pb-24 aizome-scrollbar relative">
+            <div class="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 md:pb-24 sakura-scrollbar relative">
                 <div class="max-w-6xl mx-auto h-full flex flex-col">
                     
                     <!-- Mobile 'Add Word' Trigger -->
@@ -484,7 +488,7 @@
             </div>
             
             <div id="manage-collections-modal" class="hidden absolute inset-0 z-[60] bg-white/90 flex items-center justify-center p-4">
-                <div class="bg-white w-full max-w-[95%] sm:max-w-md rounded-[1.5rem] shadow-[0_20px_40px_-15px_rgba(107,114,128,0.25)] overflow-hidden flex flex-col max-h-[80vh] border border-slate-100">
+                <div class="bg-white w-full max-w-[95%] sm:max-w-md rounded-[1.5rem] shadow-[0_20px_40px_-15px_rgba(107,114,128,0.25)] overflow-hidden flex flex-col max-h-[80dvh] border border-slate-100">
                     <div class="p-4 sm:p-5 bg-purple-50 flex justify-between items-center shrink-0 border-b border-slate-100">
                         <div class="flex items-center gap-2">
                             <i data-lucide="folders" class="w-4 h-4 sm:w-5 sm:h-5 text-purple-700"></i>
@@ -495,7 +499,7 @@
                     <div class="p-3 sm:p-4 bg-white border-b border-slate-100 text-[10px] sm:text-xs text-slate-500 font-medium shrink-0">
                         Rename collections across all associated vocabulary, or unlink the collection entirely.
                     </div>
-                    <div id="collections-edit-list" class="p-3 sm:p-4 overflow-y-auto space-y-2 sm:space-y-3 aizome-scrollbar flex-1 bg-white">
+                    <div id="collections-edit-list" class="p-3 sm:p-4 overflow-y-auto space-y-2 sm:space-y-3 sakura-scrollbar flex-1 bg-white">
                         <!-- Populated by JS -->
                     </div>
                 </div>
@@ -582,9 +586,9 @@
             return JSON.parse(localStorage.getItem('n5VocabList') || '[]');
         }
 
-        (function initAizomeMechanics() {
-            window.triggerAizomeBloom = function(elementId) {
-                if (document.documentElement.getAttribute('data-motif') !== 'aizome') return;
+        (function initSakuraMechanics() {
+            window.triggerSakuraBloom = function(elementId) {
+                if (document.documentElement.getAttribute('data-motif') !== 'sakura') return;
                 const el = document.getElementById(elementId);
                 if(!el) return;
                 
@@ -597,14 +601,14 @@
                 setTimeout(() => bloom.remove(), 800);
             };
 
-            window.triggerAizomeShake = function(elementId) {
-                if (document.documentElement.getAttribute('data-motif') !== 'aizome') return;
+            window.triggerSakuraShake = function(elementId) {
+                if (document.documentElement.getAttribute('data-motif') !== 'sakura') return;
                 const el = document.getElementById(elementId);
                 if(!el) return;
                 
-                el.classList.remove('aizome-error-flash');
+                el.classList.remove('sakura-error-flash');
                 void el.offsetWidth; 
-                el.classList.add('aizome-error-flash');
+                el.classList.add('sakura-error-flash');
             };
         })();
 
@@ -636,7 +640,7 @@
             section.classList.remove('hidden');
             collections.forEach(col => {
                 const btn = document.createElement('button');
-                btn.className = `cat-btn aizome-btn-secondary flex-auto min-w-[30%] max-w-full py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center gap-1.5`;
+                btn.className = `cat-btn sakura-btn-secondary flex-auto min-w-[30%] max-w-full py-2 sm:py-2.5 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center gap-1.5`;
                 btn.innerHTML = `<i data-lucide="folder" class="w-3.5 h-3.5 opacity-70"></i> ${col}`;
                 btn.onclick = (e) => {
                     selectCategory('collection', e.currentTarget);
@@ -650,11 +654,11 @@
         function selectMode(mode, btnElement) {
             currentMode = mode;
             document.querySelectorAll('.mode-btn').forEach(btn => {
-                btn.classList.remove('aizome-hover-reveal', 'active-mode');
-                btn.classList.add('aizome-btn-secondary');
+                btn.classList.remove('sakura-hover-reveal', 'active-mode');
+                btn.classList.add('sakura-btn-secondary');
             });
-            btnElement.classList.remove('aizome-btn-secondary');
-            btnElement.classList.add('aizome-hover-reveal', 'active-mode');
+            btnElement.classList.remove('sakura-btn-secondary');
+            btnElement.classList.add('sakura-hover-reveal', 'active-mode');
 
             const timeOpts = document.getElementById('sprint-time-options');
             const zenPlaceholder = document.getElementById('zen-placeholder');
@@ -676,11 +680,11 @@
         function selectCategory(cat, btnElement) {
             currentCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('aizome-hover-reveal', 'active-cat');
-                btn.classList.add('aizome-btn-secondary');
+                btn.classList.remove('sakura-hover-reveal', 'active-cat');
+                btn.classList.add('sakura-btn-secondary');
             });
-            btnElement.classList.remove('aizome-btn-secondary');
-            btnElement.classList.add('aizome-hover-reveal', 'active-cat');
+            btnElement.classList.remove('sakura-btn-secondary');
+            btnElement.classList.add('sakura-hover-reveal', 'active-cat');
         }
 
         function setAnswerFormat(format, btnElement) {
@@ -1001,11 +1005,6 @@
             }
         }
 
-        function toggleAllDB(checked) {
-            document.querySelectorAll('.db-word-select').forEach(cb => cb.checked = checked);
-            handleDBSelect();
-        }
-
         function applyBulkCollection() {
             const colName = document.getElementById('bulk-collection-input').value.trim();
             if(!colName) return;
@@ -1054,7 +1053,7 @@
                 const div = document.createElement('div');
                 div.className = 'w-full';
                 div.innerHTML = `
-                    <label class="aizome-checkbox flex items-center p-3 sm:p-4 bg-white border border-slate-100 hover:border-purple-200 cursor-pointer transition-colors group rounded-2xl shadow-sm">
+                    <label class="sakura-checkbox flex items-center p-3 sm:p-4 bg-white border border-slate-100 hover:border-purple-200 cursor-pointer transition-colors group rounded-2xl shadow-sm">
                         <input type="checkbox" value="${index}" class="custom-word-checkbox hidden" checked>
                         <div class="w-4 h-4 sm:w-5 sm:h-5 border-2 border-slate-200 bg-white mr-3 sm:mr-4 flex items-center justify-center transition-all shadow-inner rounded-full shrink-0">
                             <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white opacity-0 transform scale-50 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
@@ -1153,7 +1152,7 @@
             const gameScreen = document.getElementById('game-screen');
             gameScreen.classList.remove('hidden');
 
-            document.getElementById('flashcard').classList.remove('aizome-error-flash');
+            document.getElementById('flashcard').classList.remove('sakura-error-flash');
             
             const modeText = currentMode === 'sprint' ? `Sprint (${sprintDuration}s)` : 'Zen';
             let listText = 'List';
@@ -1246,8 +1245,8 @@
                 score++;
                 updateScoreUI();
                 
-                if(window.triggerAizomeBloom) {
-                    window.triggerAizomeBloom('flashcard');
+                if(window.triggerSakuraBloom) {
+                    window.triggerSakuraBloom('flashcard');
                 }
                 
                 inputEl.value = '';
@@ -1275,8 +1274,8 @@
                 shuffleBag.push(currentWord);
             }
 
-            if(window.triggerAizomeShake) {
-                window.triggerAizomeShake('flashcard');
+            if(window.triggerSakuraShake) {
+                window.triggerSakuraShake('flashcard');
             }
             
             gameActive = false;
